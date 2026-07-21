@@ -41,6 +41,7 @@ yarn-error.*
 *.jks
 *.keystore
 keystore.properties
+credentials.json
 
 # typescript
 *.tsbuildinfo

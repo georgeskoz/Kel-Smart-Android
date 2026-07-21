@@ -31,7 +31,8 @@
         "distribution": "store"
       },
       "android": {
-        "distribution": "store"
+        "distribution": "store",
+        "credentialsSource": "local"
       }
     }
   },
