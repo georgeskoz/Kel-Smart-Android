@@ -1,0 +1,45 @@
+{
+  "cli": {
+    "version": "16.17.4"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "ios": {
+        "simulator": true
+      }
+    },
+    "preview": {
+      "distribution": "internal"
+    },
+    "production": {
+      "env": {
+        "BACKEND_URL": "https://magic-tallow.vibecode.run",
+        "EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN": "sensor-a2d-data.firebaseapp.com",
+        "EXPO_PUBLIC_FIREBASE_API_KEY": "AIzaSyA9XvHsi-lVtJIe4_HBpNsSimRy-lEN6Oo",
+        "EXPO_PUBLIC_VIBECODE_BACKEND_URL": "https://magic-tallow.vibecode.run",
+        "EXPO_PUBLIC_BACKEND_URL": "https://magic-tallow.vibecode.run",
+        "EXPO_PUBLIC_FIREBASE_PROJECT_ID": "sensor-a2d-data",
+        "EXPO_PUBLIC_FIREBASE_STORAGE_BUCKET": "sensor-a2d-data.firebasestorage.app",
+        "EXPO_PUBLIC_FIREBASE_DATABASE_URL": "https://sensor-a2d-data-default-rtdb.firebaseio.com",
+        "EXPO_PUBLIC_FIREBASE_APP_ID": "1:96023608991:web:82a79fe16dceb3851cecaa",
+        "EXPO_PUBLIC_FIREBASE_MESSAGING_SENDER_ID": "96023608991",
+        "EXPO_PUBLIC_EXAMPLE_ENV_VAR": "test"
+      },
+      "ios": {
+        "distribution": "store"
+      },
+      "android": {
+        "distribution": "store"
+      }
+    }
+  },
+  "submit": {
+    "production": {
+      "ios": {
+        "ascAppId": "6760600746"
+      }
+    }
+  }
+}

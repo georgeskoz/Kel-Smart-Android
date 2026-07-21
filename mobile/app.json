@@ -1,0 +1,36 @@
+{
+  "expo": {
+    "name": "KEL Smart",
+    "slug": "kel-smart",
+    "owner": "kel-electronics",
+    "scheme": "vibecode",
+    "version": "1.0.8",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.KELTankIQ.app",
+      "buildNumber": "9",
+      "infoPlist": {}
+    },
+    "android": {
+      "package": "com.kelsmart.iq",
+      "versionCode": 7,
+      "edgeToEdgeEnabled": true
+    },
+    "plugins": [
+      "expo-router"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "icon": "./icon.png",
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "ac4a62e7-d925-4a66-94be-4266656d4281"
+      }
+    }
+  }
+}
