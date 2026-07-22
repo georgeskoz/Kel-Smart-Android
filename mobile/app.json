@@ -16,7 +16,7 @@
     },
     "android": {
       "package": "com.kelsmart.iq",
-      "versionCode": 7,
+      "versionCode": 8,
       "edgeToEdgeEnabled": true
     },
     "plugins": [
