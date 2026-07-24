@@ -50,13 +50,13 @@ export default function PrivacyPolicyScreen() {
   return (
     <View style={styles.root} testID="privacy-policy-screen">
       <SafeAreaView edges={['top']} style={styles.safeTop}>
-        <LinearGradient colors={['#252525', '#5A5A5A']} style={styles.header}>
+        <LinearGradient colors={['#FFFFFF', '#F3F4F6']} style={styles.header}>
           <Pressable
             onPress={() => router.back()}
             style={({ pressed }) => [styles.backBtn, pressed && { opacity: 0.6 }]}
             testID="privacy-policy-back-button"
           >
-            <ArrowLeft size={20} color="#FFFFFF" />
+            <ArrowLeft size={20} color="#111827" />
           </Pressable>
           <View style={styles.headerCenter}>
             <Text style={styles.headerTitle}>Privacy Policy</Text>
@@ -272,11 +272,14 @@ export default function PrivacyPolicyScreen() {
 }
 
 const AMBER = '#F59E0B';
-const AMBER_BG = '#78350F';
-const BG_DARK = '#252525';
-const BG_MID = '#5A5A5A';
-const TEXT_WHITE = '#FFFFFF';
-const TEXT_LIGHT = '#E0E0E0';
+const AMBER_BG = '#FEF3C7';
+const BG_DARK = '#FFFFFF';
+const BG_MID = '#F8F9FA';
+const BORDER = '#E5E7EB';
+const SURFACE_MUTED = '#F3F4F6';
+const TEXT_WHITE = '#111827';
+const TEXT_LIGHT = '#4B5563';
+const TEXT_MUTED = '#9CA3AF';
 
 const styles = StyleSheet.create({
   root: {
@@ -292,14 +295,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 14,
     borderBottomWidth: 1,
-    borderBottomColor: BG_MID,
+    borderBottomColor: BORDER,
   },
   backBtn: {
     width: 40,
     height: 40,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: BG_MID,
+    backgroundColor: SURFACE_MUTED,
     borderRadius: 10,
   },
   headerCenter: {
@@ -329,7 +332,7 @@ const styles = StyleSheet.create({
     backgroundColor: BG_DARK,
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: BG_MID,
+    borderColor: BORDER,
     padding: 16,
     marginBottom: 16,
     borderLeftWidth: 4,
@@ -364,7 +367,7 @@ const styles = StyleSheet.create({
     backgroundColor: BG_DARK,
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: BG_MID,
+    borderColor: BORDER,
     padding: 14,
     marginBottom: 16,
   },
@@ -419,7 +422,7 @@ const styles = StyleSheet.create({
     lineHeight: 18,
   },
   contactBlock: {
-    backgroundColor: BG_MID,
+    backgroundColor: SURFACE_MUTED,
     borderRadius: 10,
     padding: 12,
     marginTop: 8,
@@ -451,13 +454,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: 16,
     borderTopWidth: 1,
-    borderTopColor: BG_MID,
+    borderTopColor: BORDER,
     marginTop: 8,
   },
   footerText: {
     fontSize: 11,
     fontFamily: 'IBMPlexMono_700Bold',
-    color: BG_MID,
+    color: TEXT_MUTED,
     letterSpacing: 0.5,
     textAlign: 'center',
   },

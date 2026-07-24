@@ -14,15 +14,15 @@ export default function TabLayout() {
         headerShown: false,
         tabBarShowLabel: false,
         tabBarStyle: {
-          backgroundColor: '#252525',
-          borderTopColor: '#30363D',
+          backgroundColor: '#FFFFFF',
+          borderTopColor: '#E5E7EB',
           borderTopWidth: 1,
           height: 60,
           paddingBottom: 8,
           paddingTop: 8,
         },
         tabBarActiveTintColor: '#F59E0B',
-        tabBarInactiveTintColor: '#4B5563',
+        tabBarInactiveTintColor: '#9CA3AF',
       }}
     >
       <Tabs.Screen
@@ -33,10 +33,10 @@ export default function TabLayout() {
             <Database size={size} color={color} />
           ),
           headerShown: role === 'admin',
-          headerStyle: { backgroundColor: '#252525' },
+          headerStyle: { backgroundColor: '#FFFFFF' },
           headerTintColor: '#F59E0B',
           headerTitle: 'All Tanks',
-          headerTitleStyle: { color: '#FFFFFF', fontFamily: 'IBMPlexMono_700Bold' },
+          headerTitleStyle: { color: '#111827', fontFamily: 'IBMPlexMono_700Bold' },
           headerRight: () =>
             role === 'admin' ? (
               <Pressable

@@ -10,6 +10,7 @@ import {
   deleteUser as deleteFirebaseUser,
   reauthenticateWithCredential,
   EmailAuthProvider,
+  sendPasswordResetEmail,
   Auth,
 } from 'firebase/auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -139,6 +140,12 @@ export async function signOut(): Promise<void> {
   const firebaseAuth = getFirebaseAuth();
   if (!firebaseAuth) return;
   await firebaseSignOut(firebaseAuth);
+}
+
+export async function resetPassword(email: string): Promise<void> {
+  const firebaseAuth = getFirebaseAuth();
+  if (!firebaseAuth) throw new Error('Firebase not configured');
+  await sendPasswordResetEmail(firebaseAuth, email);
 }
 
 export async function signUp(

@@ -1,4 +1,4 @@
-import { DarkTheme, ThemeProvider } from '@react-navigation/native';
+import { DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { Stack, useRouter, useSegments } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
@@ -29,14 +29,14 @@ SplashScreen.preventAutoHideAsync();
 
 const queryClient = new QueryClient();
 
-const DARK_THEME = {
-  ...DarkTheme,
+const LIGHT_THEME = {
+  ...DefaultTheme,
   colors: {
-    ...DarkTheme.colors,
-    background: '#5A5A5A',
-    card: '#252525',
-    text: '#FFFFFF',
-    border: '#30363D',
+    ...DefaultTheme.colors,
+    background: '#F8F9FA',
+    card: '#FFFFFF',
+    text: '#111827',
+    border: '#E5E7EB',
     primary: '#F59E0B',
   },
 };
@@ -82,7 +82,7 @@ function AuthGate({ children }: { children: React.ReactNode }) {
 
   if (loading) {
     return (
-      <View style={{ flex: 1, backgroundColor: '#5A5A5A', alignItems: 'center', justifyContent: 'center' }}>
+      <View style={{ flex: 1, backgroundColor: '#F8F9FA', alignItems: 'center', justifyContent: 'center' }}>
         <ActivityIndicator color="#F59E0B" size="large" />
       </View>
     );
@@ -93,13 +93,13 @@ function AuthGate({ children }: { children: React.ReactNode }) {
 
 function RootLayoutNav() {
   return (
-    <ThemeProvider value={DARK_THEME}>
+    <ThemeProvider value={LIGHT_THEME}>
       <Stack
         screenOptions={{
-          contentStyle: { backgroundColor: '#5A5A5A' },
-          headerStyle: { backgroundColor: '#252525' },
-          headerTintColor: '#FFFFFF',
-          headerTitleStyle: { color: '#FFFFFF' },
+          contentStyle: { backgroundColor: '#F8F9FA' },
+          headerStyle: { backgroundColor: '#FFFFFF' },
+          headerTintColor: '#111827',
+          headerTitleStyle: { color: '#111827' },
         }}
       >
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
@@ -111,9 +111,9 @@ function RootLayoutNav() {
           name="tank-detail"
           options={{
             title: 'Tank Detail',
-            headerStyle: { backgroundColor: '#252525' },
+            headerStyle: { backgroundColor: '#FFFFFF' },
             headerTintColor: '#F59E0B',
-            headerTitleStyle: { color: '#FFFFFF' },
+            headerTitleStyle: { color: '#111827' },
           }}
         />
         <Stack.Screen
@@ -159,13 +159,13 @@ export default function RootLayout() {
   }, [fontsLoaded]);
 
   if (!fontsLoaded) {
-    return <View style={{ flex: 1, backgroundColor: '#5A5A5A' }} />;
+    return <View style={{ flex: 1, backgroundColor: '#F8F9FA' }} />;
   }
 
   return (
     <QueryClientProvider client={queryClient}>
-      <GestureHandlerRootView style={{ flex: 1, backgroundColor: '#5A5A5A' }}>
-        <StatusBar style="light" />
+      <GestureHandlerRootView style={{ flex: 1, backgroundColor: '#F8F9FA' }}>
+        <StatusBar style="dark" />
         <AuthGate>
           <RootLayoutNav />
         </AuthGate>

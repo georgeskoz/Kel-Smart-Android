@@ -117,14 +117,14 @@ function AddUserModal({
             value={name}
             onChangeText={setName}
             placeholder="Full Name"
-            placeholderTextColor="#4B5563"
+            placeholderTextColor="#9CA3AF"
           />
           <TextInput
             style={styles.addInput}
             value={email}
             onChangeText={setEmail}
             placeholder="Email"
-            placeholderTextColor="#4B5563"
+            placeholderTextColor="#9CA3AF"
             autoCapitalize="none"
             keyboardType="email-address"
           />
@@ -133,7 +133,7 @@ function AddUserModal({
             value={password}
             onChangeText={setPassword}
             placeholder="Password (min 6 chars)"
-            placeholderTextColor="#4B5563"
+            placeholderTextColor="#9CA3AF"
             secureTextEntry
           />
 
@@ -160,8 +160,8 @@ function AddUserModal({
             </Pressable>
             <Pressable style={[styles.modalConfirmBtn, { backgroundColor: '#F59E0B' }]} onPress={handleAdd} disabled={loading}>
               {loading
-                ? <ActivityIndicator color="#5A5A5A" size="small" />
-                : <Text style={[styles.modalConfirmText, { color: '#5A5A5A' }]}>Create</Text>}
+                ? <ActivityIndicator color="#1A1A1A" size="small" />
+                : <Text style={[styles.modalConfirmText, { color: '#1A1A1A' }]}>Create</Text>}
             </Pressable>
           </View>
         </Pressable>
@@ -208,7 +208,7 @@ function UserItem({
               {user.role.toUpperCase()}
             </Text>
           </View>
-          {expanded ? <ChevronUp size={14} color="#4B5563" /> : <ChevronDown size={14} color="#4B5563" />}
+          {expanded ? <ChevronUp size={14} color="#9CA3AF" /> : <ChevronDown size={14} color="#9CA3AF" />}
         </View>
       </Pressable>
 
@@ -366,14 +366,14 @@ export default function AdminUsersScreen() {
       <View style={styles.container}>
         {/* Search */}
         <View style={styles.searchWrap}>
-          <Search size={16} color="#4B5563" />
+          <Search size={16} color="#9CA3AF" />
           <TextInput
             testID="users-search-input"
             style={styles.searchInput}
             value={search}
             onChangeText={setSearch}
             placeholder="Search users..."
-            placeholderTextColor="#4B5563"
+            placeholderTextColor="#9CA3AF"
             autoCapitalize="none"
           />
         </View>
@@ -441,7 +441,7 @@ export default function AdminUsersScreen() {
           onPress={() => setAddModalVisible(true)}
         >
           <LinearGradient colors={['#F59E0B', '#D97706']} style={styles.fabGradient}>
-            <Plus size={24} color="#5A5A5A" strokeWidth={2.5} />
+            <Plus size={24} color="#1A1A1A" strokeWidth={2.5} />
           </LinearGradient>
         </Pressable>
       </View>
@@ -463,19 +463,19 @@ export default function AdminUsersScreen() {
 const styles = StyleSheet.create({
   safe: {
     flex: 1,
-    backgroundColor: '#5A5A5A',
+    backgroundColor: '#F8F9FA',
   },
   container: {
     flex: 1,
-    backgroundColor: '#5A5A5A',
+    backgroundColor: '#F8F9FA',
   },
   searchWrap: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#252525',
+    backgroundColor: '#FFFFFF',
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: '#30363D',
+    borderColor: '#E5E7EB',
     margin: 16,
     paddingHorizontal: 12,
     gap: 8,
@@ -485,7 +485,7 @@ const styles = StyleSheet.create({
     height: 44,
     fontSize: 14,
     fontFamily: 'Inter_600SemiBold',
-    color: '#FFFFFF',
+    color: '#111827',
   },
   filterRow: {
     flexDirection: 'row',
@@ -500,9 +500,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 7,
     borderRadius: 8,
-    backgroundColor: '#252525',
+    backgroundColor: '#FFFFFF',
     borderWidth: 1,
-    borderColor: '#5A5A5A',
+    borderColor: '#E5E7EB',
   },
   filterTabActive: {
     backgroundColor: '#F59E0B18',
@@ -511,13 +511,13 @@ const styles = StyleSheet.create({
   filterTabText: {
     fontSize: 13,
     fontFamily: 'Inter_700Bold',
-    color: '#E0E0E0',
+    color: '#4B5563',
   },
   filterTabTextActive: {
     color: '#F59E0B',
   },
   filterCount: {
-    backgroundColor: '#5A5A5A',
+    backgroundColor: '#F3F4F6',
     borderRadius: 10,
     paddingHorizontal: 6,
     paddingVertical: 1,
@@ -528,7 +528,7 @@ const styles = StyleSheet.create({
   filterCountText: {
     fontSize: 10,
     fontFamily: 'IBMPlexMono_700Bold',
-    color: '#E0E0E0',
+    color: '#4B5563',
   },
   filterCountTextActive: {
     color: '#F59E0B',
@@ -541,13 +541,13 @@ const styles = StyleSheet.create({
   },
   listDivider: {
     height: 1,
-    backgroundColor: '#5A5A5A',
+    backgroundColor: '#E5E7EB',
   },
   userItemWrap: {
-    backgroundColor: '#252525',
+    backgroundColor: '#FFFFFF',
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: '#5A5A5A',
+    borderColor: '#E5E7EB',
     overflow: 'hidden',
     marginBottom: 8,
   },
@@ -572,12 +572,12 @@ const styles = StyleSheet.create({
   userName: {
     fontSize: 14,
     fontFamily: 'Inter_600SemiBold',
-    color: '#FFFFFF',
+    color: '#111827',
   },
   userEmail: {
     fontSize: 12,
     fontFamily: 'Inter_600SemiBold',
-    color: '#E0E0E0',
+    color: '#4B5563',
   },
   userRight: {
     flexDirection: 'row',
@@ -601,7 +601,7 @@ const styles = StyleSheet.create({
     gap: 8,
     padding: 12,
     borderTopWidth: 1,
-    borderTopColor: '#5A5A5A',
+    borderTopColor: '#E5E7EB',
   },
   actionBtn: {
     flexDirection: 'row',
@@ -643,12 +643,12 @@ const styles = StyleSheet.create({
   emptyText: {
     fontSize: 16,
     fontFamily: 'Inter_700Bold',
-    color: '#4B5563',
+    color: '#9CA3AF',
   },
   emptySubtext: {
     fontSize: 12,
     fontFamily: 'Inter_600SemiBold',
-    color: '#374151',
+    color: '#9CA3AF',
     textAlign: 'center',
     paddingHorizontal: 32,
   },
@@ -660,10 +660,10 @@ const styles = StyleSheet.create({
     padding: 24,
   },
   modalCard: {
-    backgroundColor: '#252525',
+    backgroundColor: '#FFFFFF',
     borderRadius: 16,
     borderWidth: 1,
-    borderColor: '#30363D',
+    borderColor: '#E5E7EB',
     padding: 24,
     width: '100%',
     maxWidth: 340,
@@ -672,12 +672,12 @@ const styles = StyleSheet.create({
   modalTitle: {
     fontSize: 17,
     fontFamily: 'Inter_700Bold',
-    color: '#FFFFFF',
+    color: '#111827',
   },
   modalMessage: {
     fontSize: 14,
     fontFamily: 'Inter_600SemiBold',
-    color: '#FFFFFF',
+    color: '#111827',
     lineHeight: 20,
   },
   modalBtnRow: {
@@ -688,7 +688,7 @@ const styles = StyleSheet.create({
   modalCancelBtn: {
     flex: 1,
     height: 44,
-    backgroundColor: '#5A5A5A',
+    backgroundColor: '#F3F4F6',
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
@@ -696,7 +696,7 @@ const styles = StyleSheet.create({
   modalCancelText: {
     fontSize: 14,
     fontFamily: 'Inter_600SemiBold',
-    color: '#FFFFFF',
+    color: '#111827',
   },
   modalConfirmBtn: {
     flex: 1,
@@ -711,19 +711,19 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
   addInput: {
-    backgroundColor: '#5A5A5A',
+    backgroundColor: '#F3F4F6',
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: '#30363D',
+    borderColor: '#E5E7EB',
     paddingHorizontal: 12,
     height: 44,
     fontSize: 14,
     fontFamily: 'Inter_600SemiBold',
-    color: '#FFFFFF',
+    color: '#111827',
   },
   roleToggleRow: {
     flexDirection: 'row',
-    backgroundColor: '#5A5A5A',
+    backgroundColor: '#F3F4F6',
     borderRadius: 8,
     padding: 3,
     gap: 3,
@@ -748,7 +748,7 @@ const styles = StyleSheet.create({
   roleToggleText: {
     fontSize: 13,
     fontFamily: 'Inter_700Bold',
-    color: '#4B5563',
+    color: '#9CA3AF',
   },
   roleToggleTextActive: {
     color: '#10B981',

@@ -106,7 +106,7 @@ function MiniSparkline({
 
 function SignalIcon({ bars, online }: { bars: number; online: boolean }) {
   if (!online) {
-    return <WifiOff size={12} color="#E0E0E0" />;
+    return <WifiOff size={12} color="#9CA3AF" />;
   }
   return (
     <View style={styles.signalBars}>
@@ -117,7 +117,7 @@ function SignalIcon({ bars, online }: { bars: number; online: boolean }) {
             styles.signalBar,
             {
               height: 3 + b * 2,
-              backgroundColor: b <= bars ? '#10B981' : '#30363D',
+              backgroundColor: b <= bars ? '#10B981' : '#E5E7EB',
             },
           ]}
         />
@@ -228,7 +228,7 @@ function DeleteConfirmModal({
           <Text style={styles.confirmTitle}>Archive Tank</Text>
           <Text style={styles.confirmMessage}>
             Are you sure you want to archive{' '}
-            <Text style={{ color: '#FFFFFF', fontFamily: 'Inter_600SemiBold' }}>{tank.name}</Text>
+            <Text style={{ color: '#111827', fontFamily: 'Inter_600SemiBold' }}>{tank.name}</Text>
             {'? It will be hidden from your dashboard but can be reactivated later.'}
           </Text>
           <View style={styles.confirmBtnRow}>
@@ -287,7 +287,7 @@ function TankCard({
       style={({ pressed }) => [styles.tankCard, pressed && { opacity: 0.85 }]}
     >
       <LinearGradient
-        colors={['#252525', '#0F1419']}
+        colors={['#FFFFFF', '#F3F4F6']}
         style={styles.tankCardGradient}
       >
         {/* Left: fill bar */}
@@ -311,7 +311,7 @@ function TankCard({
                 {tank.type.toUpperCase()}
               </Text>
             </View>
-            <MoreVertical size={14} color="#4B5563" />
+            <MoreVertical size={14} color="#9CA3AF" />
           </View>
 
           {/* Level + volume */}
@@ -482,7 +482,7 @@ export default function DashboardScreen() {
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['top']}>
-      <StatusBar barStyle="light-content" backgroundColor="#5A5A5A" />
+      <StatusBar barStyle="dark-content" backgroundColor="#F8F9FA" />
       <View style={styles.container}>
         {/* Header */}
         <View style={styles.header}>
@@ -516,7 +516,7 @@ export default function DashboardScreen() {
           style={{ flexGrow: 0 }}
           contentContainerStyle={styles.statsRow}
         >
-          <StatCard label="Total Tanks" value={tanks.length} color="#FFFFFF" />
+          <StatCard label="Total Tanks" value={tanks.length} color="#111827" />
           <StatCard label="Online" value={onlineCount} color="#10B981" />
           <StatCard label="Active Alerts" value={alertCount} color="#EF4444" />
           <StatCard
@@ -557,7 +557,7 @@ export default function DashboardScreen() {
             colors={['#F59E0B', '#D97706']}
             style={styles.fabGradient}
           >
-            <Plus size={24} color="#5A5A5A" strokeWidth={2.5} />
+            <Plus size={24} color="#1A1A1A" strokeWidth={2.5} />
           </LinearGradient>
         </Pressable>
       </View>
@@ -584,11 +584,11 @@ export default function DashboardScreen() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#5A5A5A',
+    backgroundColor: '#F8F9FA',
   },
   container: {
     flex: 1,
-    backgroundColor: '#5A5A5A',
+    backgroundColor: '#F8F9FA',
   },
   header: {
     flexDirection: 'row',
@@ -598,12 +598,12 @@ const styles = StyleSheet.create({
     paddingTop: 8,
     paddingBottom: 16,
     borderBottomWidth: 1,
-    borderBottomColor: '#5A5A5A',
+    borderBottomColor: '#E5E7EB',
   },
   headerTitle: {
     fontSize: 22,
     fontFamily: 'IBMPlexMono_700Bold',
-    color: '#FFFFFF',
+    color: '#111827',
     letterSpacing: 1,
   },
   headerTitleAccent: {
@@ -612,7 +612,7 @@ const styles = StyleSheet.create({
   headerSubtitle: {
     fontSize: 11,
     fontFamily: 'Inter_600SemiBold',
-    color: '#FFFFFF',
+    color: '#111827',
     letterSpacing: 0.5,
     marginTop: 2,
   },
@@ -620,12 +620,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 6,
-    backgroundColor: '#252525',
+    backgroundColor: '#FFFFFF',
     paddingHorizontal: 10,
     paddingVertical: 6,
     borderRadius: 20,
     borderWidth: 1,
-    borderColor: '#30363D',
+    borderColor: '#E5E7EB',
   },
   connectionDot: {
     width: 8,
@@ -635,7 +635,7 @@ const styles = StyleSheet.create({
   connectionText: {
     fontSize: 12,
     fontFamily: 'IBMPlexMono_500Medium',
-    color: '#FFFFFF',
+    color: '#111827',
   },
   statsRow: {
     paddingHorizontal: 20,
@@ -643,9 +643,9 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   statCard: {
-    backgroundColor: '#252525',
+    backgroundColor: '#FFFFFF',
     borderWidth: 1,
-    borderColor: '#5A5A5A',
+    borderColor: '#E5E7EB',
     borderRadius: 10,
     paddingHorizontal: 16,
     paddingVertical: 10,
@@ -660,7 +660,7 @@ const styles = StyleSheet.create({
   statLabel: {
     fontSize: 10,
     fontFamily: 'Inter_700Bold',
-    color: '#FFFFFF',
+    color: '#111827',
     marginTop: 2,
     textTransform: 'uppercase',
     letterSpacing: 0.8,
@@ -676,13 +676,13 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 11,
     fontFamily: 'IBMPlexMono_700Bold',
-    color: '#FFFFFF',
+    color: '#111827',
     letterSpacing: 2,
   },
   sectionCount: {
     fontSize: 11,
     fontFamily: 'IBMPlexMono_400Regular',
-    color: '#4B5563',
+    color: '#9CA3AF',
   },
   tankList: {
     flex: 1,
@@ -695,7 +695,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     overflow: 'hidden',
     borderWidth: 1,
-    borderColor: '#5A5A5A',
+    borderColor: '#E5E7EB',
   },
   tankCardGradient: {
     flexDirection: 'row',
@@ -716,7 +716,7 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 15,
     fontFamily: 'Inter_600SemiBold',
-    color: '#FFFFFF',
+    color: '#111827',
   },
   typeBadge: {
     paddingHorizontal: 7,
@@ -737,25 +737,25 @@ const styles = StyleSheet.create({
   levelValue: {
     fontSize: 28,
     fontFamily: 'IBMPlexMono_700Bold',
-    color: '#FFFFFF',
+    color: '#111827',
     lineHeight: 32,
   },
   levelUnit: {
     fontSize: 14,
     fontFamily: 'IBMPlexMono_400Regular',
-    color: '#FFFFFF',
+    color: '#111827',
     marginBottom: 2,
   },
   volumeText: {
     fontSize: 13,
     fontFamily: 'IBMPlexMono_400Regular',
-    color: '#FFFFFF',
+    color: '#111827',
     marginLeft: 8,
     marginBottom: 2,
   },
   capacityBarBg: {
     height: 4,
-    backgroundColor: '#5A5A5A',
+    backgroundColor: '#E5E7EB',
     borderRadius: 2,
     overflow: 'visible',
     position: 'relative',
@@ -790,13 +790,13 @@ const styles = StyleSheet.create({
     letterSpacing: 0.3,
   },
   separator: {
-    color: '#30363D',
+    color: '#9CA3AF',
     fontSize: 12,
   },
   updateTime: {
     fontSize: 11,
     fontFamily: 'Inter_600SemiBold',
-    color: '#4B5563',
+    color: '#9CA3AF',
   },
   signalBars: {
     flexDirection: 'row',
@@ -833,10 +833,10 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   actionSheet: {
-    backgroundColor: '#252525',
+    backgroundColor: '#FFFFFF',
     borderRadius: 16,
     borderWidth: 1,
-    borderColor: '#30363D',
+    borderColor: '#E5E7EB',
     padding: 16,
     width: '100%',
     gap: 4,
@@ -844,7 +844,7 @@ const styles = StyleSheet.create({
   actionSheetHandle: {
     width: 36,
     height: 4,
-    backgroundColor: '#30363D',
+    backgroundColor: '#E5E7EB',
     borderRadius: 2,
     alignSelf: 'center',
     marginBottom: 8,
@@ -852,19 +852,19 @@ const styles = StyleSheet.create({
   actionSheetTitle: {
     fontSize: 16,
     fontFamily: 'Inter_700Bold',
-    color: '#FFFFFF',
+    color: '#111827',
     textAlign: 'center',
   },
   actionSheetSubtitle: {
     fontSize: 12,
     fontFamily: 'IBMPlexMono_400Regular',
-    color: '#E0E0E0',
+    color: '#4B5563',
     textAlign: 'center',
     marginBottom: 4,
   },
   actionSheetDivider: {
     height: 1,
-    backgroundColor: '#5A5A5A',
+    backgroundColor: '#E5E7EB',
     marginVertical: 8,
   },
   actionSheetBtn: {
@@ -885,11 +885,11 @@ const styles = StyleSheet.create({
   actionSheetBtnText: {
     fontSize: 15,
     fontFamily: 'Inter_600SemiBold',
-    color: '#FFFFFF',
+    color: '#111827',
   },
   actionSheetCancelBtn: {
     height: 48,
-    backgroundColor: '#5A5A5A',
+    backgroundColor: '#F3F4F6',
     borderRadius: 12,
     alignItems: 'center',
     justifyContent: 'center',
@@ -898,13 +898,13 @@ const styles = StyleSheet.create({
   actionSheetCancelText: {
     fontSize: 15,
     fontFamily: 'Inter_600SemiBold',
-    color: '#FFFFFF',
+    color: '#111827',
   },
   confirmCard: {
-    backgroundColor: '#252525',
+    backgroundColor: '#FFFFFF',
     borderRadius: 16,
     borderWidth: 1,
-    borderColor: '#30363D',
+    borderColor: '#E5E7EB',
     padding: 24,
     width: '100%',
     maxWidth: 340,
@@ -922,13 +922,13 @@ const styles = StyleSheet.create({
   confirmTitle: {
     fontSize: 17,
     fontFamily: 'Inter_700Bold',
-    color: '#FFFFFF',
+    color: '#111827',
     textAlign: 'center',
   },
   confirmMessage: {
     fontSize: 14,
     fontFamily: 'Inter_600SemiBold',
-    color: '#FFFFFF',
+    color: '#111827',
     textAlign: 'center',
     lineHeight: 20,
   },
@@ -941,7 +941,7 @@ const styles = StyleSheet.create({
   confirmCancelBtn: {
     flex: 1,
     height: 44,
-    backgroundColor: '#5A5A5A',
+    backgroundColor: '#F3F4F6',
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
@@ -949,7 +949,7 @@ const styles = StyleSheet.create({
   confirmCancelText: {
     fontSize: 14,
     fontFamily: 'Inter_600SemiBold',
-    color: '#FFFFFF',
+    color: '#111827',
   },
   confirmDeleteBtn: {
     flex: 1,
@@ -973,7 +973,7 @@ const styles = StyleSheet.create({
   sparklineLabel: {
     fontSize: 8,
     fontFamily: 'IBMPlexMono_400Regular',
-    color: '#4B5563',
+    color: '#9CA3AF',
     letterSpacing: 0.8,
   },
 });

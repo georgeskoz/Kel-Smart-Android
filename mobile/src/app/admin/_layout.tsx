@@ -4,10 +4,10 @@ export default function AdminLayout() {
   return (
     <Stack
       screenOptions={{
-        contentStyle: { backgroundColor: '#5A5A5A' },
-        headerStyle: { backgroundColor: '#252525' },
+        contentStyle: { backgroundColor: '#F8F9FA' },
+        headerStyle: { backgroundColor: '#FFFFFF' },
         headerTintColor: '#F59E0B',
-        headerTitleStyle: { color: '#FFFFFF' },
+        headerTitleStyle: { color: '#111827' },
       }}
     >
       <Stack.Screen name="index" options={{ headerShown: false }} />
@@ -15,9 +15,9 @@ export default function AdminLayout() {
         name="users"
         options={{
           title: 'Manage Users',
-          headerStyle: { backgroundColor: '#252525' },
+          headerStyle: { backgroundColor: '#FFFFFF' },
           headerTintColor: '#F59E0B',
-          headerTitleStyle: { color: '#FFFFFF', fontFamily: 'IBMPlexMono_700Bold' },
+          headerTitleStyle: { color: '#111827', fontFamily: 'IBMPlexMono_700Bold' },
         }}
       />
       <Stack.Screen

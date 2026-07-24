@@ -26,7 +26,7 @@ const TANK_TYPES: { label: TankType; color: string; bg: string; border: string }
   { label: 'Diesel', color: '#F59E0B', bg: '#F59E0B18', border: '#F59E0B33' },
   { label: 'Oil', color: '#8B5CF6', bg: '#8B5CF618', border: '#8B5CF633' },
   { label: 'Gasoline', color: '#EAB308', bg: '#EAB30818', border: '#EAB30833' },
-  { label: 'Other', color: '#E0E0E0', bg: '#E0E0E018', border: '#E0E0E033' },
+  { label: 'Other', color: '#6B7280', bg: '#6B728018', border: '#6B728033' },
 ];
 
 function InfoModal({
@@ -225,13 +225,13 @@ export default function EditTankScreen() {
     return (
       <View style={styles.root}>
         <SafeAreaView edges={['top']} style={styles.safeTop}>
-          <LinearGradient colors={['#252525', '#5A5A5A']} style={styles.header}>
+          <LinearGradient colors={['#FFFFFF', '#F3F4F6']} style={styles.header}>
             <Pressable
               onPress={() => router.back()}
               style={({ pressed }) => [styles.backBtn, pressed && { opacity: 0.6 }]}
               testID="back-button"
             >
-              <ArrowLeft size={20} color="#FFFFFF" />
+              <ArrowLeft size={20} color="#111827" />
             </Pressable>
             <View style={styles.headerCenter}>
               <Text style={styles.headerTitle}>Edit Tank</Text>
@@ -250,13 +250,13 @@ export default function EditTankScreen() {
   return (
     <View style={styles.root}>
       <SafeAreaView edges={['top']} style={styles.safeTop}>
-        <LinearGradient colors={['#252525', '#5A5A5A']} style={styles.header}>
+        <LinearGradient colors={['#FFFFFF', '#F3F4F6']} style={styles.header}>
           <Pressable
             onPress={() => router.back()}
             style={({ pressed }) => [styles.backBtn, pressed && { opacity: 0.6 }]}
             testID="back-button"
           >
-            <ArrowLeft size={20} color="#FFFFFF" />
+            <ArrowLeft size={20} color="#111827" />
           </Pressable>
           <View style={styles.headerCenter}>
             <Text style={styles.headerTitle}>Edit Tank</Text>
@@ -279,9 +279,9 @@ export default function EditTankScreen() {
           {/* Sensor ID (read-only) */}
           <View style={styles.section}>
             <Text style={styles.sectionLabel}>SENSOR ID</Text>
-            <View style={[styles.inputWrap, { backgroundColor: '#5A5A5A', borderColor: '#5A5A5A' }]}>
-              <Lock size={16} color="#4B5563" style={{ marginRight: 8 }} />
-              <Text style={[styles.input, { color: '#FFFFFF' }]} numberOfLines={1}>
+            <View style={[styles.inputWrap, { backgroundColor: '#F3F4F6', borderColor: '#E5E7EB' }]}>
+              <Lock size={16} color="#9CA3AF" style={{ marginRight: 8 }} />
+              <Text style={[styles.input, { color: '#111827' }]} numberOfLines={1}>
                 {id ?? '—'}
               </Text>
             </View>
@@ -297,7 +297,7 @@ export default function EditTankScreen() {
                 value={name}
                 onChangeText={setName}
                 placeholder="e.g. Main Water Tank"
-                placeholderTextColor="#4B5563"
+                placeholderTextColor="#9CA3AF"
                 autoCapitalize="words"
               />
             </View>
@@ -315,13 +315,13 @@ export default function EditTankScreen() {
                   style={[
                     styles.chip,
                     {
-                      backgroundColor: type === t.label ? t.bg : '#252525',
-                      borderColor: type === t.label ? t.border : '#5A5A5A',
+                      backgroundColor: type === t.label ? t.bg : '#FFFFFF',
+                      borderColor: type === t.label ? t.border : '#E5E7EB',
                     },
                   ]}
                 >
                   <View style={[styles.chipDot, { backgroundColor: t.color }]} />
-                  <Text style={[styles.chipText, { color: '#FFFFFF' }]}>
+                  <Text style={[styles.chipText, { color: '#111827' }]}>
                     {t.label}
                   </Text>
                 </Pressable>
@@ -333,14 +333,14 @@ export default function EditTankScreen() {
           <View style={styles.section}>
             <Text style={styles.sectionLabel}>CAPACITY</Text>
             <View style={styles.inputWrap}>
-              <Droplets size={16} color="#4B5563" style={{ marginRight: 8 }} />
+              <Droplets size={16} color="#9CA3AF" style={{ marginRight: 8 }} />
               <TextInput
                 testID="capacity-input"
                 style={[styles.input, { flex: 1 }]}
                 value={capacity}
                 onChangeText={setCapacity}
                 placeholder="1000"
-                placeholderTextColor="#4B5563"
+                placeholderTextColor="#9CA3AF"
                 keyboardType="numeric"
               />
               <Text style={styles.inputUnit}>Liters</Text>
@@ -364,7 +364,7 @@ export default function EditTankScreen() {
                     value={criticalAlert}
                     onChangeText={setCriticalAlert}
                     placeholder="10"
-                    placeholderTextColor="#4B5563"
+                    placeholderTextColor="#9CA3AF"
                     keyboardType="numeric"
                   />
                   <Text style={styles.thresholdUnit}>%</Text>
@@ -383,7 +383,7 @@ export default function EditTankScreen() {
                     value={lowAlert}
                     onChangeText={setLowAlert}
                     placeholder="20"
-                    placeholderTextColor="#4B5563"
+                    placeholderTextColor="#9CA3AF"
                     keyboardType="numeric"
                   />
                   <Text style={styles.thresholdUnit}>%</Text>
@@ -402,7 +402,7 @@ export default function EditTankScreen() {
                     value={highAlert}
                     onChangeText={setHighAlert}
                     placeholder="90"
-                    placeholderTextColor="#4B5563"
+                    placeholderTextColor="#9CA3AF"
                     keyboardType="numeric"
                   />
                   <Text style={styles.thresholdUnit}>%</Text>
@@ -420,10 +420,10 @@ export default function EditTankScreen() {
           >
             <LinearGradient colors={['#F59E0B', '#D97706']} style={styles.saveBtnGradient}>
               {saving ? (
-                <ActivityIndicator color="#5A5A5A" size="small" />
+                <ActivityIndicator color="#1A1A1A" size="small" />
               ) : (
                 <>
-                  <Save size={18} color="#5A5A5A" strokeWidth={2.5} />
+                  <Save size={18} color="#1A1A1A" strokeWidth={2.5} />
                   <Text style={styles.saveBtnText}>Save Changes</Text>
                 </>
               )}
@@ -469,10 +469,10 @@ export default function EditTankScreen() {
 const styles = StyleSheet.create({
   root: {
     flex: 1,
-    backgroundColor: '#5A5A5A',
+    backgroundColor: '#F8F9FA',
   },
   safeTop: {
-    backgroundColor: '#252525',
+    backgroundColor: '#FFFFFF',
   },
   header: {
     flexDirection: 'row',
@@ -480,14 +480,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 14,
     borderBottomWidth: 1,
-    borderBottomColor: '#5A5A5A',
+    borderBottomColor: '#E5E7EB',
   },
   backBtn: {
     width: 40,
     height: 40,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#5A5A5A',
+    backgroundColor: '#F3F4F6',
     borderRadius: 10,
   },
   headerCenter: {
@@ -497,13 +497,13 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 17,
     fontFamily: 'IBMPlexMono_700Bold',
-    color: '#FFFFFF',
+    color: '#111827',
     letterSpacing: 0.5,
   },
   headerSubtitle: {
     fontSize: 11,
     fontFamily: 'Inter_600SemiBold',
-    color: '#E0E0E0',
+    color: '#4B5563',
     marginTop: 2,
   },
   loadingWrap: {
@@ -524,24 +524,24 @@ const styles = StyleSheet.create({
   sectionLabel: {
     fontSize: 11,
     fontFamily: 'IBMPlexMono_700Bold',
-    color: '#FFFFFF',
+    color: '#111827',
     letterSpacing: 2,
     marginBottom: 8,
   },
   sectionHint: {
     fontSize: 12,
     fontFamily: 'Inter_600SemiBold',
-    color: '#FFFFFF',
+    color: '#4B5563',
     marginBottom: 8,
     marginTop: -4,
   },
   inputWrap: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#252525',
+    backgroundColor: '#FFFFFF',
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: '#30363D',
+    borderColor: '#E5E7EB',
     paddingHorizontal: 14,
     height: 52,
   },
@@ -549,12 +549,12 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 15,
     fontFamily: 'Inter_600SemiBold',
-    color: '#FFFFFF',
+    color: '#111827',
   },
   inputUnit: {
     fontSize: 13,
     fontFamily: 'IBMPlexMono_400Regular',
-    color: '#4B5563',
+    color: '#9CA3AF',
     marginLeft: 8,
   },
   chipRow: {
@@ -586,10 +586,10 @@ const styles = StyleSheet.create({
   },
   thresholdItem: {
     flex: 1,
-    backgroundColor: '#252525',
+    backgroundColor: '#FFFFFF',
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: '#5A5A5A',
+    borderColor: '#E5E7EB',
     overflow: 'hidden',
   },
   thresholdHeader: {
@@ -620,12 +620,12 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 18,
     fontFamily: 'IBMPlexMono_700Bold',
-    color: '#FFFFFF',
+    color: '#111827',
   },
   thresholdUnit: {
     fontSize: 12,
     fontFamily: 'IBMPlexMono_400Regular',
-    color: '#E0E0E0',
+    color: '#4B5563',
   },
   saveBtn: {
     borderRadius: 12,
@@ -647,7 +647,7 @@ const styles = StyleSheet.create({
   saveBtnText: {
     fontSize: 16,
     fontFamily: 'Inter_700Bold',
-    color: '#5A5A5A',
+    color: '#1A1A1A',
     letterSpacing: 0.3,
   },
   modalOverlay: {
@@ -658,10 +658,10 @@ const styles = StyleSheet.create({
     padding: 24,
   },
   modalCard: {
-    backgroundColor: '#252525',
+    backgroundColor: '#FFFFFF',
     borderRadius: 16,
     borderWidth: 1,
-    borderColor: '#30363D',
+    borderColor: '#E5E7EB',
     padding: 24,
     width: '100%',
     maxWidth: 320,
@@ -678,13 +678,13 @@ const styles = StyleSheet.create({
   modalTitle: {
     fontSize: 17,
     fontFamily: 'Inter_700Bold',
-    color: '#FFFFFF',
+    color: '#111827',
     textAlign: 'center',
   },
   modalMessage: {
     fontSize: 14,
     fontFamily: 'Inter_600SemiBold',
-    color: '#FFFFFF',
+    color: '#111827',
     textAlign: 'center',
     lineHeight: 20,
   },
@@ -715,14 +715,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   deleteModalCancelBtn: {
-    backgroundColor: '#5A5A5A',
+    backgroundColor: '#F3F4F6',
     borderWidth: 1,
-    borderColor: '#30363D',
+    borderColor: '#E5E7EB',
   },
   deleteModalCancelText: {
     fontSize: 15,
     fontFamily: 'Inter_600SemiBold',
-    color: '#FFFFFF',
+    color: '#111827',
   },
   deleteModalConfirmBtn: {
     backgroundColor: '#EF4444',

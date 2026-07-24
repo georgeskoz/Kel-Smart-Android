@@ -9,7 +9,7 @@ export default function ModalScreen() {
       <View className="my-8 h-px w-4/5 bg-gray-200 dark:bg-white/10" />
 
       {/* Use a light status bar on iOS to account for the black space above the modal */}
-      <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
+      <StatusBar style={Platform.OS === 'ios' ? 'dark' : 'auto'} />
     </View>
   );
 }

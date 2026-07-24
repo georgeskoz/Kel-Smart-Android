@@ -77,7 +77,7 @@ function QuickActionRow({
         <Text style={styles.actionLabel}>{label}</Text>
         <Text style={styles.actionSubtitle}>{subtitle}</Text>
       </View>
-      <ChevronRight size={16} color="#4B5563" />
+      <ChevronRight size={16} color="#9CA3AF" />
     </Pressable>
   );
 }
@@ -161,7 +161,7 @@ export default function AdminDashboardScreen() {
       <View style={styles.container}>
         {/* Header */}
         <LinearGradient
-          colors={['#1A0A0A', '#252525']}
+          colors={['#FEF2F2', '#FEE2E2']}
           style={styles.header}
         >
           <View style={styles.headerLeft}>
@@ -305,11 +305,11 @@ export default function AdminDashboardScreen() {
 const styles = StyleSheet.create({
   safe: {
     flex: 1,
-    backgroundColor: '#5A5A5A',
+    backgroundColor: '#F8F9FA',
   },
   container: {
     flex: 1,
-    backgroundColor: '#5A5A5A',
+    backgroundColor: '#F8F9FA',
   },
   header: {
     flexDirection: 'row',
@@ -339,13 +339,13 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 22,
     fontFamily: 'IBMPlexMono_700Bold',
-    color: '#FFFFFF',
+    color: '#111827',
     letterSpacing: 0.5,
   },
   headerGreeting: {
     fontSize: 12,
     fontFamily: 'Inter_600SemiBold',
-    color: '#E0E0E0',
+    color: '#4B5563',
     marginTop: 1,
   },
   logoutBtn: {
@@ -371,7 +371,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 10,
     fontFamily: 'IBMPlexMono_700Bold',
-    color: '#FFFFFF',
+    color: '#111827',
     letterSpacing: 2,
     marginBottom: 10,
     marginLeft: 2,
@@ -419,14 +419,14 @@ const styles = StyleSheet.create({
   statLabel: {
     fontSize: 11,
     fontFamily: 'Inter_700Bold',
-    color: '#FFFFFF',
+    color: '#111827',
     letterSpacing: 0.3,
   },
   card: {
-    backgroundColor: '#252525',
+    backgroundColor: '#FFFFFF',
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: '#5A5A5A',
+    borderColor: '#E5E7EB',
     marginBottom: 24,
     overflow: 'hidden',
   },
@@ -451,16 +451,16 @@ const styles = StyleSheet.create({
   actionLabel: {
     fontSize: 14,
     fontFamily: 'Inter_600SemiBold',
-    color: '#FFFFFF',
+    color: '#111827',
   },
   actionSubtitle: {
     fontSize: 12,
     fontFamily: 'Inter_600SemiBold',
-    color: '#E0E0E0',
+    color: '#4B5563',
   },
   divider: {
     height: 1,
-    backgroundColor: '#5A5A5A',
+    backgroundColor: '#E5E7EB',
     marginHorizontal: 14,
   },
   userRow: {
@@ -484,12 +484,12 @@ const styles = StyleSheet.create({
   userName: {
     fontSize: 14,
     fontFamily: 'Inter_600SemiBold',
-    color: '#FFFFFF',
+    color: '#111827',
   },
   userEmail: {
     fontSize: 12,
     fontFamily: 'Inter_600SemiBold',
-    color: '#E0E0E0',
+    color: '#4B5563',
   },
   roleBadge: {
     paddingHorizontal: 8,

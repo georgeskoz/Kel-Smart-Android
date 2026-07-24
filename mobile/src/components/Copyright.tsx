@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
   copyright: {
     fontSize: 11,
     fontFamily: 'Inter_600SemiBold',
-    color: '#FFFFFF',
+    color: '#9CA3AF',
     textAlign: 'center',
     paddingVertical: 12,
   },

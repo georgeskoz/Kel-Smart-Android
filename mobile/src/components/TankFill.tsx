@@ -99,7 +99,7 @@ export function TankFill({
   const clipId = `tc-${Math.round(width)}-${Math.round(height)}`;
 
   const effectiveLevel = online ? level : 0;
-  const displayColor = online ? getFillColor(level) : '#4B5563';
+  const displayColor = online ? getFillColor(level) : '#9CA3AF';
 
   return (
     <View style={[styles.container, { width, height: height + 22 }]}>

@@ -94,7 +94,7 @@ function LevelHistoryChart({
     return (
       <View style={historyStyles.empty}>
         <View style={historyStyles.emptyIconRing}>
-          <Activity size={26} color="#4B5563" />
+          <Activity size={26} color="#9CA3AF" />
         </View>
         <Text style={historyStyles.emptyTitle}>No History Yet</Text>
         <Text style={historyStyles.emptySubtitle}>
@@ -297,7 +297,7 @@ function LevelHistoryChart({
                     left: pt.x - 3,
                     top: pt.y - 3,
                     backgroundColor: pt.color,
-                    borderColor: '#0F1419',
+                    borderColor: '#FFFFFF',
                   },
                 ]}
               />
@@ -326,7 +326,7 @@ function LevelHistoryChart({
                   historyStyles.latestDot,
                   {
                     backgroundColor: latestPoint.color,
-                    borderColor: '#0F1419',
+                    borderColor: '#FFFFFF',
                     shadowColor: latestPoint.color,
                   },
                 ]}
@@ -391,7 +391,7 @@ const historyStyles = StyleSheet.create({
     overflow: 'hidden',
     borderRadius: 6,
     borderWidth: 1,
-    borderColor: '#30363D',
+    borderColor: '#E5E7EB',
   },
   zone: {
     position: 'absolute',
@@ -403,8 +403,8 @@ const historyStyles = StyleSheet.create({
     left: 0,
     right: 0,
     height: 1,
-    backgroundColor: '#30363D',
-    opacity: 0.4,
+    backgroundColor: '#E5E7EB',
+    opacity: 0.7,
   },
   zoneLine: {
     position: 'absolute',
@@ -476,9 +476,9 @@ const historyStyles = StyleSheet.create({
   },
   statPill: {
     flex: 1,
-    backgroundColor: '#1A1A1A',
+    backgroundColor: '#F3F4F6',
     borderWidth: 1,
-    borderColor: '#30363D',
+    borderColor: '#E5E7EB',
     borderRadius: 8,
     paddingVertical: 7,
     paddingHorizontal: 6,
@@ -494,7 +494,7 @@ const historyStyles = StyleSheet.create({
   statPillValue: {
     fontSize: 11,
     fontFamily: 'IBMPlexMono_700Bold',
-    color: '#FFFFFF',
+    color: '#111827',
   },
   empty: {
     alignItems: 'center',
@@ -505,21 +505,21 @@ const historyStyles = StyleSheet.create({
     width: 56,
     height: 56,
     borderRadius: 28,
-    backgroundColor: '#1A1A1A',
+    backgroundColor: '#F3F4F6',
     borderWidth: 1,
-    borderColor: '#30363D',
+    borderColor: '#E5E7EB',
     alignItems: 'center',
     justifyContent: 'center',
   },
   emptyTitle: {
     fontSize: 15,
     fontFamily: 'Inter_700Bold',
-    color: '#FFFFFF',
+    color: '#111827',
   },
   emptySubtitle: {
     fontSize: 12,
     fontFamily: 'Inter_600SemiBold',
-    color: '#4B5563',
+    color: '#9CA3AF',
     textAlign: 'center',
     lineHeight: 18,
     paddingHorizontal: 16,
@@ -657,7 +657,7 @@ export default function TankDetailScreen() {
         <View style={{ flex: 1 }}>
           <Text style={detailStyles.headerTitle} numberOfLines={1}>{tank.name}</Text>
           <View style={[detailStyles.typeBadge, { backgroundColor: `${typeColor}22`, borderColor: `${typeColor}44` }]}>
-            <Text style={[detailStyles.typeBadgeText, { color: '#FFFFFF' }]}>{tank.type.toUpperCase()}</Text>
+            <Text style={[detailStyles.typeBadgeText, { color: '#111827' }]}>{tank.type.toUpperCase()}</Text>
           </View>
         </View>
         <Pressable
@@ -665,7 +665,7 @@ export default function TankDetailScreen() {
           onPress={() => router.push({ pathname: '/edit-tank', params: { id: tank.id } })}
           style={({ pressed }) => [detailStyles.editBtn, pressed && { opacity: 0.6 }]}
         >
-          <Edit3 size={18} color="#FFFFFF" />
+          <Edit3 size={18} color="#111827" />
         </Pressable>
       </View>
 
@@ -675,7 +675,7 @@ export default function TankDetailScreen() {
         showsVerticalScrollIndicator={false}
       >
         {/* Main visualization */}
-        <LinearGradient colors={['#252525', '#0F1419']} style={detailStyles.vizCard}>
+        <LinearGradient colors={['#FFFFFF', '#F3F4F6']} style={detailStyles.vizCard}>
           <TankFill level={tank.level} online={tank.online} width={100} height={220} showLabel />
 
           {/* Status + signal */}
@@ -689,14 +689,14 @@ export default function TankDetailScreen() {
                 <>
                   <View style={detailStyles.signalBars}>
                     {[1, 2, 3, 4].map((b) => (
-                      <View key={b} style={[detailStyles.signalBar, { height: 3 + b * 2, backgroundColor: b <= signalBars ? '#10B981' : '#30363D' }]} />
+                      <View key={b} style={[detailStyles.signalBar, { height: 3 + b * 2, backgroundColor: b <= signalBars ? '#10B981' : '#E5E7EB' }]} />
                     ))}
                   </View>
                   <Text style={detailStyles.signalText}>{tank.signalStrength} dBm</Text>
                 </>
               ) : (
                 <>
-                  <WifiOff size={14} color="#E0E0E0" />
+                  <WifiOff size={14} color="#9CA3AF" />
                   <Text style={detailStyles.signalText}>Offline</Text>
                 </>
               )}
@@ -714,7 +714,7 @@ export default function TankDetailScreen() {
 
         {/* Alert thresholds */}
         <View style={detailStyles.sectionHeader}>
-          <Activity size={14} color="#FFFFFF" />
+          <Activity size={14} color="#111827" />
           <Text style={detailStyles.sectionTitle}>ALERT THRESHOLDS</Text>
         </View>
         <View style={detailStyles.card}>
@@ -748,7 +748,7 @@ export default function TankDetailScreen() {
 
         {/* Sensor info */}
         <View style={detailStyles.sectionHeader}>
-          <Thermometer size={14} color="#FFFFFF" />
+          <Thermometer size={14} color="#111827" />
           <Text style={detailStyles.sectionTitle}>SENSOR</Text>
         </View>
         <View style={detailStyles.card}>
@@ -768,9 +768,9 @@ export default function TankDetailScreen() {
               {tank.online ? (
                 <Wifi size={12} color="#10B981" />
               ) : (
-                <WifiOff size={12} color="#E0E0E0" />
+                <WifiOff size={12} color="#9CA3AF" />
               )}
-              <Text style={[detailStyles.sensorValue, { color: tank.online ? '#10B981' : '#E0E0E0' }]}>
+              <Text style={[detailStyles.sensorValue, { color: tank.online ? '#10B981' : '#4B5563' }]}>
                 {tank.online ? `${tank.signalStrength} dBm` : 'Offline'}
               </Text>
             </View>
@@ -779,9 +779,9 @@ export default function TankDetailScreen() {
 
         {/* History chart */}
         <View style={detailStyles.sectionHeader}>
-          <Activity size={14} color="#FFFFFF" />
+          <Activity size={14} color="#111827" />
           <Text style={detailStyles.sectionTitle}>LEVEL HISTORY</Text>
-          <Text style={{ fontSize: 10, fontFamily: 'IBMPlexMono_400Regular', color: '#4B5563', marginLeft: 'auto' }}>
+          <Text style={{ fontSize: 10, fontFamily: 'IBMPlexMono_400Regular', color: '#9CA3AF', marginLeft: 'auto' }}>
             last 8 hours
           </Text>
         </View>
@@ -804,7 +804,7 @@ export default function TankDetailScreen() {
 const detailStyles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#5A5A5A',
+    backgroundColor: '#F8F9FA',
   },
   header: {
     flexDirection: 'row',
@@ -813,23 +813,23 @@ const detailStyles = StyleSheet.create({
     paddingTop: 8,
     paddingBottom: 14,
     borderBottomWidth: 1,
-    borderBottomColor: '#5A5A5A',
+    borderBottomColor: '#E5E7EB',
     gap: 12,
   },
   backBtn: {
     width: 36,
     height: 36,
     borderRadius: 18,
-    backgroundColor: '#252525',
+    backgroundColor: '#FFFFFF',
     borderWidth: 1,
-    borderColor: '#30363D',
+    borderColor: '#E5E7EB',
     alignItems: 'center',
     justifyContent: 'center',
   },
   headerTitle: {
     fontSize: 16,
     fontFamily: 'Inter_600SemiBold',
-    color: '#FFFFFF',
+    color: '#111827',
   },
   typeBadge: {
     alignSelf: 'flex-start',
@@ -848,9 +848,9 @@ const detailStyles = StyleSheet.create({
     width: 36,
     height: 36,
     borderRadius: 18,
-    backgroundColor: '#252525',
+    backgroundColor: '#FFFFFF',
     borderWidth: 1,
-    borderColor: '#30363D',
+    borderColor: '#E5E7EB',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -864,7 +864,7 @@ const detailStyles = StyleSheet.create({
   vizCard: {
     borderRadius: 16,
     borderWidth: 1,
-    borderColor: '#5A5A5A',
+    borderColor: '#E5E7EB',
     padding: 20,
     alignItems: 'center',
     gap: 16,
@@ -911,7 +911,7 @@ const detailStyles = StyleSheet.create({
   signalText: {
     fontSize: 11,
     fontFamily: 'IBMPlexMono_400Regular',
-    color: '#E0E0E0',
+    color: '#4B5563',
   },
   statsGrid: {
     flexDirection: 'row',
@@ -922,9 +922,9 @@ const detailStyles = StyleSheet.create({
   statBox: {
     flex: 1,
     minWidth: '45%',
-    backgroundColor: '#252525',
+    backgroundColor: '#FFFFFF',
     borderWidth: 1,
-    borderColor: '#5A5A5A',
+    borderColor: '#E5E7EB',
     borderRadius: 10,
     padding: 12,
     gap: 4,
@@ -932,18 +932,18 @@ const detailStyles = StyleSheet.create({
   statBoxLabel: {
     fontSize: 10,
     fontFamily: 'IBMPlexMono_700Bold',
-    color: '#FFFFFF',
+    color: '#111827',
     letterSpacing: 1.5,
   },
   statBoxValue: {
     fontSize: 20,
     fontFamily: 'IBMPlexMono_700Bold',
-    color: '#FFFFFF',
+    color: '#111827',
   },
   statBoxUnit: {
     fontSize: 12,
     fontFamily: 'IBMPlexMono_400Regular',
-    color: '#FFFFFF',
+    color: '#111827',
   },
   sectionHeader: {
     flexDirection: 'row',
@@ -955,20 +955,20 @@ const detailStyles = StyleSheet.create({
   sectionTitle: {
     fontSize: 11,
     fontFamily: 'IBMPlexMono_700Bold',
-    color: '#FFFFFF',
+    color: '#111827',
     letterSpacing: 2,
   },
   card: {
-    backgroundColor: '#252525',
+    backgroundColor: '#FFFFFF',
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: '#5A5A5A',
+    borderColor: '#E5E7EB',
     marginBottom: 12,
     overflow: 'hidden',
   },
   divider: {
     height: 1,
-    backgroundColor: '#5A5A5A',
+    backgroundColor: '#E5E7EB',
     marginHorizontal: 14,
   },
   thresholdRow: {
@@ -986,17 +986,17 @@ const detailStyles = StyleSheet.create({
     flex: 1,
     fontSize: 14,
     fontFamily: 'Inter_700Bold',
-    color: '#FFFFFF',
+    color: '#111827',
   },
   thresholdValue: {
     fontSize: 14,
     fontFamily: 'IBMPlexMono_700Bold',
-    color: '#FFFFFF',
+    color: '#111827',
   },
   thresholdVolume: {
     fontSize: 12,
     fontFamily: 'IBMPlexMono_400Regular',
-    color: '#E0E0E0',
+    color: '#4B5563',
   },
   sensorRow: {
     flexDirection: 'row',
@@ -1007,11 +1007,11 @@ const detailStyles = StyleSheet.create({
   sensorLabel: {
     fontSize: 13,
     fontFamily: 'Inter_700Bold',
-    color: '#FFFFFF',
+    color: '#111827',
   },
   sensorValue: {
     fontSize: 13,
     fontFamily: 'IBMPlexMono_400Regular',
-    color: '#FFFFFF',
+    color: '#111827',
   },
 });

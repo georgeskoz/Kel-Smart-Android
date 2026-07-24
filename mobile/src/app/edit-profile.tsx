@@ -103,7 +103,7 @@ function InputField({
           value={value}
           onChangeText={onChangeText}
           placeholder={placeholder}
-          placeholderTextColor="#4B5563"
+          placeholderTextColor="#9CA3AF"
           secureTextEntry={secureTextEntry}
           autoCapitalize={autoCapitalize ?? 'sentences'}
           keyboardType={keyboardType}
@@ -239,13 +239,13 @@ export default function EditProfileScreen() {
   return (
     <View style={styles.root}>
       <SafeAreaView edges={['top']} style={styles.safeTop}>
-        <LinearGradient colors={['#252525', '#5A5A5A']} style={styles.header}>
+        <LinearGradient colors={['#FFFFFF', '#F3F4F6']} style={styles.header}>
           <Pressable
             onPress={() => router.back()}
             style={({ pressed }) => [styles.backBtn, pressed && { opacity: 0.6 }]}
             testID="back-button"
           >
-            <ArrowLeft size={20} color="#FFFFFF" />
+            <ArrowLeft size={20} color="#111827" />
           </Pressable>
           <View style={styles.headerCenter}>
             <Text style={styles.headerTitle}>Edit Profile</Text>
@@ -270,7 +270,7 @@ export default function EditProfileScreen() {
           <View style={styles.card}>
             <InputField
               label="Display Name"
-              icon={<User size={16} color="#FFFFFF" />}
+              icon={<User size={16} color="#9CA3AF" />}
               value={displayName}
               onChangeText={setDisplayName}
               placeholder="Your full name"
@@ -287,7 +287,7 @@ export default function EditProfileScreen() {
           >
             <LinearGradient colors={['#F59E0B', '#D97706']} style={styles.saveBtnGradient}>
               {savingProfile ? (
-                <ActivityIndicator color="#5A5A5A" size="small" />
+                <ActivityIndicator color="#1A1A1A" size="small" />
               ) : (
                 <Text style={styles.saveBtnText}>Save Profile</Text>
               )}
@@ -299,7 +299,7 @@ export default function EditProfileScreen() {
           <View style={styles.card}>
             <InputField
               label="Current Password"
-              icon={<Lock size={16} color="#FFFFFF" />}
+              icon={<Lock size={16} color="#9CA3AF" />}
               value={currentPassword}
               onChangeText={setCurrentPassword}
               placeholder="Enter current password"
@@ -310,7 +310,7 @@ export default function EditProfileScreen() {
             <View style={styles.cardDivider} />
             <InputField
               label="New Password"
-              icon={<Lock size={16} color="#FFFFFF" />}
+              icon={<Lock size={16} color="#9CA3AF" />}
               value={newPassword}
               onChangeText={setNewPassword}
               placeholder="At least 6 characters"
@@ -321,7 +321,7 @@ export default function EditProfileScreen() {
             <View style={styles.cardDivider} />
             <InputField
               label="Confirm New Password"
-              icon={<Lock size={16} color="#FFFFFF" />}
+              icon={<Lock size={16} color="#9CA3AF" />}
               value={confirmPassword}
               onChangeText={setConfirmPassword}
               placeholder="Repeat new password"
@@ -342,11 +342,11 @@ export default function EditProfileScreen() {
               savingPassword && { opacity: 0.7 },
             ]}
           >
-            <View style={[styles.saveBtnGradient, { backgroundColor: '#5A5A5A' }]}>
+            <View style={[styles.saveBtnGradient, { backgroundColor: '#F3F4F6' }]}>
               {savingPassword ? (
-                <ActivityIndicator color="#FFFFFF" size="small" />
+                <ActivityIndicator color="#111827" size="small" />
               ) : (
-                <Text style={[styles.saveBtnText, { color: '#FFFFFF' }]}>Change Password</Text>
+                <Text style={[styles.saveBtnText, { color: '#111827' }]}>Change Password</Text>
               )}
             </View>
           </Pressable>
@@ -363,7 +363,7 @@ export default function EditProfileScreen() {
                 <FileText size={18} color="#F59E0B" />
               </View>
               <Text style={styles.legalRowText}>Privacy Policy</Text>
-              <ChevronRight size={18} color="#5A5A5A" />
+              <ChevronRight size={18} color="#9CA3AF" />
             </Pressable>
           </View>
 
@@ -386,16 +386,16 @@ export default function EditProfileScreen() {
 const styles = StyleSheet.create({
   root: {
     flex: 1,
-    backgroundColor: '#5A5A5A',
+    backgroundColor: '#F8F9FA',
   },
   loadingContainer: {
     flex: 1,
-    backgroundColor: '#5A5A5A',
+    backgroundColor: '#F8F9FA',
     alignItems: 'center',
     justifyContent: 'center',
   },
   safeTop: {
-    backgroundColor: '#252525',
+    backgroundColor: '#FFFFFF',
   },
   header: {
     flexDirection: 'row',
@@ -403,14 +403,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 14,
     borderBottomWidth: 1,
-    borderBottomColor: '#5A5A5A',
+    borderBottomColor: '#E5E7EB',
   },
   backBtn: {
     width: 40,
     height: 40,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#5A5A5A',
+    backgroundColor: '#F3F4F6',
     borderRadius: 10,
   },
   headerCenter: {
@@ -420,13 +420,13 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 17,
     fontFamily: 'IBMPlexMono_700Bold',
-    color: '#FFFFFF',
+    color: '#111827',
     letterSpacing: 0.5,
   },
   headerSubtitle: {
     fontSize: 11,
     fontFamily: 'Inter_600SemiBold',
-    color: '#E0E0E0',
+    color: '#4B5563',
     marginTop: 2,
   },
   scroll: {
@@ -439,22 +439,22 @@ const styles = StyleSheet.create({
   sectionLabel: {
     fontSize: 11,
     fontFamily: 'IBMPlexMono_700Bold',
-    color: '#FFFFFF',
+    color: '#111827',
     letterSpacing: 2,
     marginBottom: 10,
     marginLeft: 2,
   },
   card: {
-    backgroundColor: '#252525',
+    backgroundColor: '#FFFFFF',
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: '#5A5A5A',
+    borderColor: '#E5E7EB',
     overflow: 'hidden',
     marginBottom: 14,
   },
   cardDivider: {
     height: 1,
-    backgroundColor: '#5A5A5A',
+    backgroundColor: '#E5E7EB',
     marginHorizontal: 14,
   },
   fieldWrap: {
@@ -464,17 +464,17 @@ const styles = StyleSheet.create({
   fieldLabel: {
     fontSize: 11,
     fontFamily: 'IBMPlexMono_500Medium',
-    color: '#E0E0E0',
+    color: '#4B5563',
     letterSpacing: 0.5,
     marginBottom: 8,
   },
   inputWrap: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#5A5A5A',
+    backgroundColor: '#F3F4F6',
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: '#30363D',
+    borderColor: '#E5E7EB',
     paddingHorizontal: 12,
     height: 46,
   },
@@ -485,7 +485,7 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 15,
     fontFamily: 'Inter_600SemiBold',
-    color: '#FFFFFF',
+    color: '#111827',
   },
   saveBtn: {
     borderRadius: 12,
@@ -506,7 +506,7 @@ const styles = StyleSheet.create({
   saveBtnText: {
     fontSize: 16,
     fontFamily: 'Inter_700Bold',
-    color: '#5A5A5A',
+    color: '#1A1A1A',
     letterSpacing: 0.3,
   },
   modalOverlay: {
@@ -517,10 +517,10 @@ const styles = StyleSheet.create({
     padding: 24,
   },
   modalCard: {
-    backgroundColor: '#252525',
+    backgroundColor: '#FFFFFF',
     borderRadius: 16,
     borderWidth: 1,
-    borderColor: '#30363D',
+    borderColor: '#E5E7EB',
     padding: 24,
     width: '100%',
     maxWidth: 320,
@@ -537,13 +537,13 @@ const styles = StyleSheet.create({
   modalTitle: {
     fontSize: 17,
     fontFamily: 'Inter_700Bold',
-    color: '#FFFFFF',
+    color: '#111827',
     textAlign: 'center',
   },
   modalMessage: {
     fontSize: 14,
     fontFamily: 'Inter_600SemiBold',
-    color: '#FFFFFF',
+    color: '#111827',
     textAlign: 'center',
     lineHeight: 20,
   },
@@ -570,7 +570,7 @@ const styles = StyleSheet.create({
     width: 32,
     height: 32,
     borderRadius: 8,
-    backgroundColor: '#78350F',
+    backgroundColor: '#FEF3C7',
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 12,
@@ -579,6 +579,6 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 15,
     fontFamily: 'Inter_600SemiBold',
-    color: '#FFFFFF',
+    color: '#111827',
   },
 });

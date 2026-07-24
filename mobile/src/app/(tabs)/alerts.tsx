@@ -27,7 +27,7 @@ function alertIcon(type: TankAlert['type']) {
     case 'high':
       return <TrendingUp size={18} color="#F59E0B" />;
     case 'offline':
-      return <WifiOff size={18} color="#E0E0E0" />;
+      return <WifiOff size={18} color="#6B7280" />;
     case 'restored':
       return <CheckCircle size={18} color="#10B981" />;
   }
@@ -41,7 +41,7 @@ function alertColor(type: TankAlert['type']): string {
     case 'high':
       return '#F59E0B';
     case 'offline':
-      return '#E0E0E0';
+      return '#6B7280';
     case 'restored':
       return '#10B981';
   }
@@ -117,7 +117,7 @@ export default function AlertsScreen() {
       <View style={styles.container}>
         {/* Header */}
         <LinearGradient
-          colors={['#252525', '#5A5A5A']}
+          colors={['#FFFFFF', '#F3F4F6']}
           style={styles.header}
         >
           <Text style={styles.headerTitle}>Alerts</Text>
@@ -161,11 +161,11 @@ export default function AlertsScreen() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#5A5A5A',
+    backgroundColor: '#F8F9FA',
   },
   container: {
     flex: 1,
-    backgroundColor: '#5A5A5A',
+    backgroundColor: '#F8F9FA',
   },
   header: {
     flexDirection: 'row',
@@ -175,12 +175,12 @@ const styles = StyleSheet.create({
     paddingTop: 8,
     paddingBottom: 16,
     borderBottomWidth: 1,
-    borderBottomColor: '#5A5A5A',
+    borderBottomColor: '#E5E7EB',
   },
   headerTitle: {
     fontSize: 22,
     fontFamily: 'IBMPlexMono_700Bold',
-    color: '#FFFFFF',
+    color: '#111827',
     letterSpacing: 1,
   },
   countBadge: {
@@ -206,7 +206,7 @@ const styles = StyleSheet.create({
   sectionLabel: {
     fontSize: 11,
     fontFamily: 'IBMPlexMono_700Bold',
-    color: '#FFFFFF',
+    color: '#111827',
     letterSpacing: 2,
     marginBottom: 10,
     marginLeft: 2,
@@ -214,10 +214,10 @@ const styles = StyleSheet.create({
   alertCard: {
     flexDirection: 'row',
     gap: 12,
-    backgroundColor: '#252525',
+    backgroundColor: '#FFFFFF',
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: '#5A5A5A',
+    borderColor: '#E5E7EB',
     borderLeftWidth: 3,
     padding: 14,
     marginBottom: 8,
@@ -243,7 +243,7 @@ const styles = StyleSheet.create({
   alertTankName: {
     fontSize: 14,
     fontFamily: 'Inter_600SemiBold',
-    color: '#FFFFFF',
+    color: '#111827',
     flex: 1,
   },
   alertBadge: {
@@ -260,7 +260,7 @@ const styles = StyleSheet.create({
   alertMessage: {
     fontSize: 12,
     fontFamily: 'Inter_600SemiBold',
-    color: '#FFFFFF',
+    color: '#111827',
     lineHeight: 18,
   },
   alertFooter: {
@@ -271,17 +271,17 @@ const styles = StyleSheet.create({
   alertLevel: {
     fontSize: 11,
     fontFamily: 'IBMPlexMono_500Medium',
-    color: '#E0E0E0',
+    color: '#4B5563',
   },
   alertTime: {
     fontSize: 11,
     fontFamily: 'Inter_600SemiBold',
-    color: '#4B5563',
+    color: '#9CA3AF',
   },
   emptyCard: {
-    backgroundColor: '#252525',
+    backgroundColor: '#FFFFFF',
     borderWidth: 1,
-    borderColor: '#5A5A5A',
+    borderColor: '#E5E7EB',
     borderRadius: 10,
     padding: 32,
     alignItems: 'center',
@@ -290,6 +290,6 @@ const styles = StyleSheet.create({
   emptyText: {
     fontSize: 14,
     fontFamily: 'Inter_700Bold',
-    color: '#FFFFFF',
+    color: '#111827',
   },
 });

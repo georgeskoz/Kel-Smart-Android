@@ -56,7 +56,7 @@ function SettingRow({
       <View style={styles.settingRight}>
         {value ? <Text style={styles.settingValue}>{value}</Text> : null}
         {children}
-        {onPress ? <ChevronRight size={14} color="#4B5563" /> : null}
+        {onPress ? <ChevronRight size={14} color="#9CA3AF" /> : null}
       </View>
     </Pressable>
   );
@@ -152,7 +152,7 @@ export default function SettingsScreen() {
     <SafeAreaView style={styles.safeArea} edges={['top']}>
       <View style={styles.container}>
         <LinearGradient
-          colors={['#252525', '#5A5A5A']}
+          colors={['#FFFFFF', '#F3F4F6']}
           style={styles.header}
         >
           <Text style={styles.headerTitle}>Settings</Text>
@@ -215,16 +215,16 @@ export default function SettingsScreen() {
           <View style={styles.card}>
             <View style={styles.firebaseStatus}>
               <View style={styles.firebaseLeft}>
-                <Wifi size={18} color={firebaseConnected ? '#10B981' : '#E0E0E0'} />
+                <Wifi size={18} color={firebaseConnected ? '#10B981' : '#9CA3AF'} />
                 <View>
                   <Text style={styles.firebaseTitle}>Firebase Realtime DB</Text>
-                  <Text style={[styles.firebaseSubtitle, { color: firebaseConnected ? '#10B981' : configured ? '#F59E0B' : '#E0E0E0' }]}>
+                  <Text style={[styles.firebaseSubtitle, { color: firebaseConnected ? '#10B981' : configured ? '#F59E0B' : '#9CA3AF' }]}>
                     {firebaseConnected ? 'Connected — Live data' : configured ? 'Connecting...' : 'Add ENV vars to connect'}
                   </Text>
                 </View>
               </View>
-              <View style={[styles.statusPill, { backgroundColor: firebaseConnected ? '#10B98122' : configured ? '#F59E0B22' : '#E0E0E022', borderColor: firebaseConnected ? '#10B98144' : configured ? '#F59E0B44' : '#E0E0E044' }]}>
-                <Text style={[styles.statusPillText, { color: firebaseConnected ? '#10B981' : configured ? '#F59E0B' : '#E0E0E0' }]}>
+              <View style={[styles.statusPill, { backgroundColor: firebaseConnected ? '#10B98122' : configured ? '#F59E0B22' : '#9CA3AF22', borderColor: firebaseConnected ? '#10B98144' : configured ? '#F59E0B44' : '#9CA3AF44' }]}>
+                <Text style={[styles.statusPillText, { color: firebaseConnected ? '#10B981' : configured ? '#F59E0B' : '#9CA3AF' }]}>
                   {firebaseConnected ? 'LIVE' : configured ? 'WAIT' : 'DEMO'}
                 </Text>
               </View>
@@ -236,7 +236,7 @@ export default function SettingsScreen() {
           <View style={styles.card}>
             <View style={styles.settingRow}>
               <View style={styles.settingIcon}>
-                <Clock size={16} color="#FFFFFF" />
+                <Clock size={16} color="#111827" />
               </View>
               <Text style={styles.settingLabel}>Update Interval</Text>
               <View style={styles.segmentRow}>
@@ -261,7 +261,7 @@ export default function SettingsScreen() {
 
             <View style={styles.settingRow}>
               <View style={styles.settingIcon}>
-                <Gauge size={16} color="#FFFFFF" />
+                <Gauge size={16} color="#111827" />
               </View>
               <Text style={styles.settingLabel}>Units</Text>
               <View style={styles.segmentRow}>
@@ -287,28 +287,28 @@ export default function SettingsScreen() {
           <SectionHeader title="NOTIFICATIONS" />
           <View style={styles.card}>
             <SettingRow
-              icon={<Bell size={16} color="#FFFFFF" />}
+              icon={<Bell size={16} color="#111827" />}
               label="Push Notifications"
             >
               <Switch
                 value={notificationsEnabled}
                 onValueChange={setNotificationsEnabled}
-                trackColor={{ false: '#30363D', true: '#F59E0B44' }}
-                thumbColor={notificationsEnabled ? '#F59E0B' : '#4B5563'}
+                trackColor={{ false: '#E5E7EB', true: '#F59E0B44' }}
+                thumbColor={notificationsEnabled ? '#F59E0B' : '#9CA3AF'}
               />
             </SettingRow>
 
             <View style={styles.divider} />
 
             <SettingRow
-              icon={<Volume2 size={16} color="#FFFFFF" />}
+              icon={<Volume2 size={16} color="#111827" />}
               label="Sound Alerts"
             >
               <Switch
                 value={soundAlertsEnabled}
                 onValueChange={setSoundAlertsEnabled}
-                trackColor={{ false: '#30363D', true: '#F59E0B44' }}
-                thumbColor={soundAlertsEnabled ? '#F59E0B' : '#4B5563'}
+                trackColor={{ false: '#E5E7EB', true: '#F59E0B44' }}
+                thumbColor={soundAlertsEnabled ? '#F59E0B' : '#9CA3AF'}
               />
             </SettingRow>
           </View>
@@ -317,7 +317,7 @@ export default function SettingsScreen() {
           <SectionHeader title="ABOUT" />
           <View style={styles.card}>
             <SettingRow
-              icon={<Info size={16} color="#FFFFFF" />}
+              icon={<Info size={16} color="#111827" />}
               label="App Version"
               value="1.0.0"
             />
@@ -440,7 +440,7 @@ export default function SettingsScreen() {
                 testID="reauth-password-input"
                 style={styles.reAuthInput}
                 placeholder="Your password"
-                placeholderTextColor="#4B5563"
+                placeholderTextColor="#9CA3AF"
                 secureTextEntry
                 value={reAuthPassword}
                 onChangeText={(t) => { setReAuthPassword(t); setDeleteError(''); }}
@@ -477,23 +477,23 @@ export default function SettingsScreen() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#5A5A5A',
+    backgroundColor: '#F8F9FA',
   },
   container: {
     flex: 1,
-    backgroundColor: '#5A5A5A',
+    backgroundColor: '#F8F9FA',
   },
   header: {
     paddingHorizontal: 20,
     paddingTop: 8,
     paddingBottom: 16,
     borderBottomWidth: 1,
-    borderBottomColor: '#5A5A5A',
+    borderBottomColor: '#E5E7EB',
   },
   headerTitle: {
     fontSize: 22,
     fontFamily: 'IBMPlexMono_700Bold',
-    color: '#FFFFFF',
+    color: '#111827',
     letterSpacing: 1,
   },
   scroll: {
@@ -506,17 +506,17 @@ const styles = StyleSheet.create({
   sectionHeader: {
     fontSize: 11,
     fontFamily: 'IBMPlexMono_700Bold',
-    color: '#FFFFFF',
+    color: '#111827',
     letterSpacing: 2,
     marginBottom: 8,
     marginLeft: 2,
     marginTop: 4,
   },
   card: {
-    backgroundColor: '#252525',
+    backgroundColor: '#FFFFFF',
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: '#5A5A5A',
+    borderColor: '#E5E7EB',
     marginBottom: 16,
     overflow: 'hidden',
   },
@@ -541,12 +541,12 @@ const styles = StyleSheet.create({
   profileName: {
     fontSize: 16,
     fontFamily: 'Inter_600SemiBold',
-    color: '#FFFFFF',
+    color: '#111827',
   },
   profileEmail: {
     fontSize: 12,
     fontFamily: 'Inter_600SemiBold',
-    color: '#E0E0E0',
+    color: '#4B5563',
   },
   roleBadge: {
     alignSelf: 'flex-start',
@@ -577,7 +577,7 @@ const styles = StyleSheet.create({
   firebaseTitle: {
     fontSize: 14,
     fontFamily: 'Inter_600SemiBold',
-    color: '#FFFFFF',
+    color: '#111827',
   },
   firebaseSubtitle: {
     fontSize: 12,
@@ -609,7 +609,7 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 14,
     fontFamily: 'Inter_700Bold',
-    color: '#FFFFFF',
+    color: '#111827',
   },
   settingRight: {
     flexDirection: 'row',
@@ -619,16 +619,16 @@ const styles = StyleSheet.create({
   settingValue: {
     fontSize: 13,
     fontFamily: 'IBMPlexMono_400Regular',
-    color: '#FFFFFF',
+    color: '#111827',
   },
   divider: {
     height: 1,
-    backgroundColor: '#5A5A5A',
+    backgroundColor: '#E5E7EB',
     marginHorizontal: 14,
   },
   segmentRow: {
     flexDirection: 'row',
-    backgroundColor: '#5A5A5A',
+    backgroundColor: '#F3F4F6',
     borderRadius: 8,
     padding: 2,
     gap: 2,
@@ -644,10 +644,10 @@ const styles = StyleSheet.create({
   segmentText: {
     fontSize: 11,
     fontFamily: 'IBMPlexMono_500Medium',
-    color: '#E0E0E0',
+    color: '#4B5563',
   },
   segmentTextActive: {
-    color: '#5A5A5A',
+    color: '#1A1A1A',
   },
   aboutSection: {
     padding: 16,
@@ -665,19 +665,19 @@ const styles = StyleSheet.create({
   aboutSubtitle: {
     fontSize: 12,
     fontFamily: 'Inter_700Bold',
-    color: '#FFFFFF',
+    color: '#111827',
     marginBottom: 8,
   },
   aboutBody: {
     fontSize: 13,
     fontFamily: 'Inter_600SemiBold',
-    color: '#E0E0E0',
+    color: '#4B5563',
     lineHeight: 20,
   },
   aboutFooter: {
     fontSize: 11,
     fontFamily: 'IBMPlexMono_400Regular',
-    color: '#4B5563',
+    color: '#9CA3AF',
     marginTop: 8,
   },
   logoutBtn: {
@@ -734,13 +734,13 @@ const styles = StyleSheet.create({
     padding: 24,
   },
   modalCard: {
-    backgroundColor: '#252525',
+    backgroundColor: '#FFFFFF',
     borderRadius: 20,
     padding: 28,
     width: '100%',
     maxWidth: 340,
     borderWidth: 1,
-    borderColor: '#5A5A5A',
+    borderColor: '#E5E7EB',
     alignItems: 'center',
   },
   modalIconWrap: {
@@ -757,14 +757,14 @@ const styles = StyleSheet.create({
   modalTitle: {
     fontSize: 18,
     fontFamily: 'Inter_700Bold',
-    color: '#FFFFFF',
+    color: '#111827',
     marginBottom: 10,
     textAlign: 'center',
   },
   modalBody: {
     fontSize: 14,
     fontFamily: 'Inter_600SemiBold',
-    color: '#E0E0E0',
+    color: '#4B5563',
     textAlign: 'center',
     lineHeight: 22,
     marginBottom: 24,
@@ -778,14 +778,14 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 46,
     borderRadius: 10,
-    backgroundColor: '#5A5A5A',
+    backgroundColor: '#F3F4F6',
     alignItems: 'center',
     justifyContent: 'center',
   },
   modalCancelText: {
     fontSize: 15,
     fontFamily: 'Inter_600SemiBold',
-    color: '#FFFFFF',
+    color: '#111827',
   },
   modalDeleteBtn: {
     flex: 1,
@@ -802,15 +802,15 @@ const styles = StyleSheet.create({
   },
   reAuthInput: {
     width: '100%',
-    backgroundColor: '#1A1A1A',
+    backgroundColor: '#FFFFFF',
     borderWidth: 1,
-    borderColor: '#5A5A5A',
+    borderColor: '#E5E7EB',
     borderRadius: 10,
     paddingHorizontal: 14,
     paddingVertical: 12,
     fontSize: 15,
     fontFamily: 'Inter_600SemiBold',
-    color: '#FFFFFF',
+    color: '#111827',
     marginBottom: 8,
   },
   reAuthError: {
