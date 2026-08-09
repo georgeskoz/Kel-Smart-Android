@@ -37,7 +37,7 @@ const LIGHT_THEME = {
     card: '#FFFFFF',
     text: '#111827',
     border: '#E5E7EB',
-    primary: '#F59E0B',
+    primary: '#26335F',
   },
 };
 
@@ -83,7 +83,7 @@ function AuthGate({ children }: { children: React.ReactNode }) {
   if (loading) {
     return (
       <View style={{ flex: 1, backgroundColor: '#F8F9FA', alignItems: 'center', justifyContent: 'center' }}>
-        <ActivityIndicator color="#F59E0B" size="large" />
+        <ActivityIndicator color="#26335F" size="large" />
       </View>
     );
   }
@@ -112,7 +112,7 @@ function RootLayoutNav() {
           options={{
             title: 'Tank Detail',
             headerStyle: { backgroundColor: '#FFFFFF' },
-            headerTintColor: '#F59E0B',
+            headerTintColor: '#26335F',
             headerTitleStyle: { color: '#111827' },
           }}
         />

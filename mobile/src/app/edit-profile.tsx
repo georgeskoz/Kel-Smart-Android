@@ -231,7 +231,7 @@ export default function EditProfileScreen() {
   if (loadingProfile) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator color="#F59E0B" size="large" />
+        <ActivityIndicator color="#26335F" size="large" />
       </View>
     );
   }
@@ -285,9 +285,9 @@ export default function EditProfileScreen() {
             disabled={savingProfile}
             style={({ pressed }) => [styles.saveBtn, pressed && { opacity: 0.85 }, savingProfile && { opacity: 0.7 }]}
           >
-            <LinearGradient colors={['#F59E0B', '#D97706']} style={styles.saveBtnGradient}>
+            <LinearGradient colors={['#26335F', '#1E294C']} style={styles.saveBtnGradient}>
               {savingProfile ? (
-                <ActivityIndicator color="#1A1A1A" size="small" />
+                <ActivityIndicator color="#FFFFFF" size="small" />
               ) : (
                 <Text style={styles.saveBtnText}>Save Profile</Text>
               )}
@@ -360,7 +360,7 @@ export default function EditProfileScreen() {
               style={({ pressed }) => [styles.legalRow, pressed && { opacity: 0.7 }]}
             >
               <View style={styles.legalIconWrap}>
-                <FileText size={18} color="#F59E0B" />
+                <FileText size={18} color="#26335F" />
               </View>
               <Text style={styles.legalRowText}>Privacy Policy</Text>
               <ChevronRight size={18} color="#9CA3AF" />
@@ -491,7 +491,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     overflow: 'hidden',
     marginBottom: 16,
-    shadowColor: '#F59E0B',
+    shadowColor: '#26335F',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.25,
     shadowRadius: 10,
@@ -506,7 +506,7 @@ const styles = StyleSheet.create({
   saveBtnText: {
     fontSize: 16,
     fontFamily: 'Inter_700Bold',
-    color: '#1A1A1A',
+    color: '#FFFFFF',
     letterSpacing: 0.3,
   },
   modalOverlay: {

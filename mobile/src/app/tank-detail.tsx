@@ -106,7 +106,7 @@ function LevelHistoryChart({
 
   const getZoneColor = (level: number): string => {
     if (level <= criticalAlert) return '#EF4444';
-    if (level <= lowAlert) return '#F59E0B';
+    if (level <= lowAlert) return '#26335F';
     if (level >= highAlert) return '#3B82F6';
     return '#10B981';
   };
@@ -223,7 +223,7 @@ function LevelHistoryChart({
           <View
             style={[
               historyStyles.zone,
-              { top: warningTopY, height: criticalTopY - warningTopY, backgroundColor: '#F59E0B20' },
+              { top: warningTopY, height: criticalTopY - warningTopY, backgroundColor: '#26335F20' },
             ]}
           />
           {/* Red zone: 0–lowAlert*0.6 */}
@@ -244,7 +244,7 @@ function LevelHistoryChart({
 
           {/* Zone threshold lines */}
           <View style={[historyStyles.zoneLine, { top: normalTopY, borderColor: '#3B82F640' }]} />
-          <View style={[historyStyles.zoneLine, { top: warningTopY, borderColor: '#F59E0B50' }]} />
+          <View style={[historyStyles.zoneLine, { top: warningTopY, borderColor: '#26335F50' }]} />
           <View style={[historyStyles.zoneLine, { top: criticalTopY, borderColor: '#EF444440' }]} />
 
           {/* Line segments */}
@@ -624,13 +624,13 @@ export default function TankDetailScreen() {
             onPress={() => router.back()}
             style={({ pressed }) => [detailStyles.backBtn, pressed && { opacity: 0.6 }]}
           >
-            <ArrowLeft size={22} color="#F59E0B" />
+            <ArrowLeft size={22} color="#26335F" />
           </Pressable>
           <View style={{ flex: 1 }} />
           <View style={detailStyles.editBtn} />
         </View>
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }} testID="loading-indicator">
-          <ActivityIndicator size="large" color="#F59E0B" />
+          <ActivityIndicator size="large" color="#26335F" />
         </View>
       </SafeAreaView>
     );
@@ -652,7 +652,7 @@ export default function TankDetailScreen() {
           onPress={() => router.back()}
           style={({ pressed }) => [detailStyles.backBtn, pressed && { opacity: 0.6 }]}
         >
-          <ArrowLeft size={22} color="#F59E0B" />
+          <ArrowLeft size={22} color="#26335F" />
         </Pressable>
         <View style={{ flex: 1 }}>
           <Text style={detailStyles.headerTitle} numberOfLines={1}>{tank.name}</Text>
@@ -719,7 +719,7 @@ export default function TankDetailScreen() {
         </View>
         <View style={detailStyles.card}>
           <View style={detailStyles.thresholdRow}>
-            <View style={[detailStyles.thresholdDot, { backgroundColor: '#F59E0B' }]} />
+            <View style={[detailStyles.thresholdDot, { backgroundColor: '#26335F' }]} />
             <Text style={detailStyles.thresholdLabel}>Low Alert</Text>
             <Text style={detailStyles.thresholdValue}>{tank.lowAlert}%</Text>
             <Text style={detailStyles.thresholdVolume}>

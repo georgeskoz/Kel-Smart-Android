@@ -6,7 +6,7 @@ export default function AdminLayout() {
       screenOptions={{
         contentStyle: { backgroundColor: '#F8F9FA' },
         headerStyle: { backgroundColor: '#FFFFFF' },
-        headerTintColor: '#F59E0B',
+        headerTintColor: '#26335F',
         headerTitleStyle: { color: '#111827' },
       }}
     >
@@ -16,7 +16,7 @@ export default function AdminLayout() {
         options={{
           title: 'Manage Users',
           headerStyle: { backgroundColor: '#FFFFFF' },
-          headerTintColor: '#F59E0B',
+          headerTintColor: '#26335F',
           headerTitleStyle: { color: '#111827', fontFamily: 'IBMPlexMono_700Bold' },
         }}
       />

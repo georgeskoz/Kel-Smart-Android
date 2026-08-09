@@ -172,7 +172,7 @@ function TankActionModal({
             onPress={onViewDetails}
           >
             <View style={styles.actionSheetBtnIcon}>
-              <Eye size={18} color="#F59E0B" />
+              <Eye size={18} color="#26335F" />
             </View>
             <Text style={styles.actionSheetBtnText}>View Details</Text>
           </Pressable>
@@ -189,10 +189,10 @@ function TankActionModal({
             style={({ pressed }) => [styles.actionSheetBtn, pressed && { opacity: 0.7 }]}
             onPress={onDelete}
           >
-            <View style={[styles.actionSheetBtnIcon, { backgroundColor: '#F59E0B18' }]}>
-              <Archive size={18} color="#F59E0B" />
+            <View style={[styles.actionSheetBtnIcon, { backgroundColor: '#26335F18' }]}>
+              <Archive size={18} color="#26335F" />
             </View>
-            <Text style={[styles.actionSheetBtnText, { color: '#F59E0B' }]}>Archive Tank</Text>
+            <Text style={[styles.actionSheetBtnText, { color: '#26335F' }]}>Archive Tank</Text>
           </Pressable>
           <Pressable
             style={({ pressed }) => [styles.actionSheetCancelBtn, pressed && { opacity: 0.7 }]}
@@ -223,7 +223,7 @@ function DeleteConfirmModal({
       <Pressable style={styles.modalOverlay} onPress={onCancel}>
         <View style={styles.confirmCard}>
           <View style={styles.confirmIconWrap}>
-            <Archive size={24} color="#F59E0B" />
+            <Archive size={24} color="#26335F" />
           </View>
           <Text style={styles.confirmTitle}>Archive Tank</Text>
           <Text style={styles.confirmMessage}>
@@ -500,7 +500,7 @@ export default function DashboardScreen() {
             <View
               style={[
                 styles.connectionDot,
-                { backgroundColor: firebaseConnected ? '#10B981' : '#F59E0B' },
+                { backgroundColor: firebaseConnected ? '#10B981' : '#26335F' },
               ]}
             />
             <Text style={styles.connectionText}>
@@ -522,7 +522,7 @@ export default function DashboardScreen() {
           <StatCard
             label="Avg Level"
             value={onlineCount > 0 ? `${Math.round(tanks.filter((t) => t.online).reduce((s, t) => s + t.level, 0) / onlineCount)}%` : '--'}
-            color="#F59E0B"
+            color="#26335F"
           />
         </ScrollView>
 
@@ -554,10 +554,10 @@ export default function DashboardScreen() {
           style={({ pressed }) => [styles.fab, pressed && { opacity: 0.8, transform: [{ scale: 0.95 }] }]}
         >
           <LinearGradient
-            colors={['#F59E0B', '#D97706']}
+            colors={['#26335F', '#1E294C']}
             style={styles.fabGradient}
           >
-            <Plus size={24} color="#1A1A1A" strokeWidth={2.5} />
+            <Plus size={24} color="#FFFFFF" strokeWidth={2.5} />
           </LinearGradient>
         </Pressable>
       </View>
@@ -607,7 +607,7 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
   },
   headerTitleAccent: {
-    color: '#F59E0B',
+    color: '#26335F',
   },
   headerSubtitle: {
     fontSize: 11,
@@ -770,7 +770,7 @@ const styles = StyleSheet.create({
     top: -3,
     width: 2,
     height: 10,
-    backgroundColor: '#F59E0B',
+    backgroundColor: '#26335F',
     borderRadius: 1,
     marginLeft: -1,
   },
@@ -812,7 +812,7 @@ const styles = StyleSheet.create({
     bottom: 20,
     right: 20,
     borderRadius: 28,
-    shadowColor: '#F59E0B',
+    shadowColor: '#26335F',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.4,
     shadowRadius: 12,
@@ -878,7 +878,7 @@ const styles = StyleSheet.create({
     width: 36,
     height: 36,
     borderRadius: 10,
-    backgroundColor: '#F59E0B18',
+    backgroundColor: '#26335F18',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -915,7 +915,7 @@ const styles = StyleSheet.create({
     width: 52,
     height: 52,
     borderRadius: 26,
-    backgroundColor: '#F59E0B22',
+    backgroundColor: '#26335F22',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -954,7 +954,7 @@ const styles = StyleSheet.create({
   confirmDeleteBtn: {
     flex: 1,
     height: 44,
-    backgroundColor: '#F59E0B',
+    backgroundColor: '#26335F',
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
@@ -962,7 +962,7 @@ const styles = StyleSheet.create({
   confirmDeleteText: {
     fontSize: 14,
     fontFamily: 'Inter_600SemiBold',
-    color: '#1a1a1a',
+    color: '#FFFFFF',
   },
   sparklineRow: {
     flexDirection: 'row',

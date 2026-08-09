@@ -41,7 +41,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
   return (
     <View style={styles.faqItem}>
       <View style={styles.faqQuestion}>
-        <HelpCircle size={14} color="#F59E0B" style={{ marginTop: 2 }} />
+        <HelpCircle size={14} color="#26335F" style={{ marginTop: 2 }} />
         <Text style={styles.faqQuestionText}>{question}</Text>
       </View>
       <Text style={styles.faqAnswerText}>{answer}</Text>
@@ -98,7 +98,7 @@ export default function SupportScreen() {
             style={({ pressed }) => [styles.contactButton, pressed && { opacity: 0.7 }]}
             onPress={() => Linking.openURL('mailto:support@kel-electronics.com')}
           >
-            <Mail size={18} color="#F59E0B" />
+            <Mail size={18} color="#26335F" />
             <Text style={styles.contactButtonText}>support@kel-electronics.com</Text>
           </Pressable>
           <View style={styles.responseInfo}>
@@ -156,7 +156,7 @@ export default function SupportScreen() {
         <SectionHeader title="Troubleshooting" />
         <SectionCard>
           <View style={styles.troubleshootRow}>
-            <AlertCircle size={15} color="#F59E0B" />
+            <AlertCircle size={15} color="#26335F" />
             <Text style={[styles.bodyText, { marginLeft: 8, flex: 1, marginBottom: 0 }]}>
               App not loading data?
             </Text>
@@ -166,7 +166,7 @@ export default function SupportScreen() {
           </BodyText>
 
           <View style={[styles.troubleshootRow, { marginTop: 12 }]}>
-            <AlertCircle size={15} color="#F59E0B" />
+            <AlertCircle size={15} color="#26335F" />
             <Text style={[styles.bodyText, { marginLeft: 8, flex: 1, marginBottom: 0 }]}>
               Notifications not working?
             </Text>
@@ -176,7 +176,7 @@ export default function SupportScreen() {
           </BodyText>
 
           <View style={[styles.troubleshootRow, { marginTop: 12 }]}>
-            <AlertCircle size={15} color="#F59E0B" />
+            <AlertCircle size={15} color="#26335F" />
             <Text style={[styles.bodyText, { marginLeft: 8, flex: 1, marginBottom: 0 }]}>
               Login issues?
             </Text>
@@ -220,7 +220,7 @@ export default function SupportScreen() {
   );
 }
 
-const AMBER = '#F59E0B';
+const AMBER = '#26335F';
 const AMBER_BG = '#FEF3C7';
 const BG_DARK = '#FFFFFF';
 const BG_MID = '#F8F9FA';

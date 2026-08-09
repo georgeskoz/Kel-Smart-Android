@@ -271,7 +271,7 @@ export default function PrivacyPolicyScreen() {
   );
 }
 
-const AMBER = '#F59E0B';
+const AMBER = '#26335F';
 const AMBER_BG = '#FEF3C7';
 const BG_DARK = '#FFFFFF';
 const BG_MID = '#F8F9FA';

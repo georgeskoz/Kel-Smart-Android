@@ -73,7 +73,7 @@ function UserAvatar({ name, size = 52 }: { name: string; size?: number }) {
     .join('')
     .toUpperCase()
     .slice(0, 2);
-  const palette = ['#3B82F6', '#8B5CF6', '#10B981', '#F59E0B', '#EF4444'];
+  const palette = ['#3B82F6', '#8B5CF6', '#10B981', '#26335F', '#EF4444'];
   const color = palette[name.charCodeAt(0) % palette.length];
   return (
     <View style={[styles.avatar, { width: size, height: size, borderRadius: size / 2, backgroundColor: `${color}28`, borderColor: `${color}55` }]}>
@@ -191,7 +191,7 @@ export default function SettingsScreen() {
 
                 <View style={styles.divider} />
                 <SettingRow
-                  icon={<UserPen size={16} color="#F59E0B" />}
+                  icon={<UserPen size={16} color="#26335F" />}
                   label="Edit Profile"
                   onPress={() => router.push('/edit-profile' as any)}
                 />
@@ -218,13 +218,13 @@ export default function SettingsScreen() {
                 <Wifi size={18} color={firebaseConnected ? '#10B981' : '#9CA3AF'} />
                 <View>
                   <Text style={styles.firebaseTitle}>Firebase Realtime DB</Text>
-                  <Text style={[styles.firebaseSubtitle, { color: firebaseConnected ? '#10B981' : configured ? '#F59E0B' : '#9CA3AF' }]}>
+                  <Text style={[styles.firebaseSubtitle, { color: firebaseConnected ? '#10B981' : configured ? '#26335F' : '#9CA3AF' }]}>
                     {firebaseConnected ? 'Connected — Live data' : configured ? 'Connecting...' : 'Add ENV vars to connect'}
                   </Text>
                 </View>
               </View>
-              <View style={[styles.statusPill, { backgroundColor: firebaseConnected ? '#10B98122' : configured ? '#F59E0B22' : '#9CA3AF22', borderColor: firebaseConnected ? '#10B98144' : configured ? '#F59E0B44' : '#9CA3AF44' }]}>
-                <Text style={[styles.statusPillText, { color: firebaseConnected ? '#10B981' : configured ? '#F59E0B' : '#9CA3AF' }]}>
+              <View style={[styles.statusPill, { backgroundColor: firebaseConnected ? '#10B98122' : configured ? '#26335F22' : '#9CA3AF22', borderColor: firebaseConnected ? '#10B98144' : configured ? '#26335F44' : '#9CA3AF44' }]}>
+                <Text style={[styles.statusPillText, { color: firebaseConnected ? '#10B981' : configured ? '#26335F' : '#9CA3AF' }]}>
                   {firebaseConnected ? 'LIVE' : configured ? 'WAIT' : 'DEMO'}
                 </Text>
               </View>
@@ -293,8 +293,8 @@ export default function SettingsScreen() {
               <Switch
                 value={notificationsEnabled}
                 onValueChange={setNotificationsEnabled}
-                trackColor={{ false: '#E5E7EB', true: '#F59E0B44' }}
-                thumbColor={notificationsEnabled ? '#F59E0B' : '#9CA3AF'}
+                trackColor={{ false: '#E5E7EB', true: '#26335F44' }}
+                thumbColor={notificationsEnabled ? '#26335F' : '#9CA3AF'}
               />
             </SettingRow>
 
@@ -307,8 +307,8 @@ export default function SettingsScreen() {
               <Switch
                 value={soundAlertsEnabled}
                 onValueChange={setSoundAlertsEnabled}
-                trackColor={{ false: '#E5E7EB', true: '#F59E0B44' }}
-                thumbColor={soundAlertsEnabled ? '#F59E0B' : '#9CA3AF'}
+                trackColor={{ false: '#E5E7EB', true: '#26335F44' }}
+                thumbColor={soundAlertsEnabled ? '#26335F' : '#9CA3AF'}
               />
             </SettingRow>
           </View>
@@ -323,7 +323,7 @@ export default function SettingsScreen() {
             />
             <View style={styles.divider} />
             <SettingRow
-              icon={<Shield size={16} color="#F59E0B" />}
+              icon={<Shield size={16} color="#26335F" />}
               label="Privacy Policy"
               onPress={() => router.push('/privacy-policy' as any)}
             />
@@ -342,13 +342,13 @@ export default function SettingsScreen() {
           <SectionHeader title="SUPPORT" />
           <View style={styles.card}>
             <SettingRow
-              icon={<Mail size={16} color="#F59E0B" />}
+              icon={<Mail size={16} color="#26335F" />}
               label="Email Support"
               onPress={() => Linking.openURL('mailto:support@kel-es.com?subject=KEL Smart App Support')}
             />
             <View style={styles.divider} />
             <SettingRow
-              icon={<Phone size={16} color="#F59E0B" />}
+              icon={<Phone size={16} color="#26335F" />}
               label="Call Support"
               onPress={() => Linking.openURL('tel:+1234567890')}
             />
@@ -639,7 +639,7 @@ const styles = StyleSheet.create({
     borderRadius: 6,
   },
   segmentActive: {
-    backgroundColor: '#F59E0B',
+    backgroundColor: '#26335F',
   },
   segmentText: {
     fontSize: 11,
@@ -647,7 +647,7 @@ const styles = StyleSheet.create({
     color: '#4B5563',
   },
   segmentTextActive: {
-    color: '#1A1A1A',
+    color: '#FFFFFF',
   },
   aboutSection: {
     padding: 16,
@@ -656,11 +656,11 @@ const styles = StyleSheet.create({
   aboutTitle: {
     fontSize: 16,
     fontFamily: 'IBMPlexMono_700Bold',
-    color: '#F59E0B',
+    color: '#26335F',
     letterSpacing: 1,
   },
   aboutTitleAccent: {
-    color: '#F59E0B',
+    color: '#26335F',
   },
   aboutSubtitle: {
     fontSize: 12,

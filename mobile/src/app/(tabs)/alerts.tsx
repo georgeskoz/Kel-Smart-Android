@@ -23,9 +23,9 @@ function alertIcon(type: TankAlert['type']) {
     case 'critical':
       return <AlertTriangle size={18} color="#EF4444" />;
     case 'low':
-      return <TrendingDown size={18} color="#F59E0B" />;
+      return <TrendingDown size={18} color="#26335F" />;
     case 'high':
-      return <TrendingUp size={18} color="#F59E0B" />;
+      return <TrendingUp size={18} color="#26335F" />;
     case 'offline':
       return <WifiOff size={18} color="#6B7280" />;
     case 'restored':
@@ -39,7 +39,7 @@ function alertColor(type: TankAlert['type']): string {
       return '#EF4444';
     case 'low':
     case 'high':
-      return '#F59E0B';
+      return '#26335F';
     case 'offline':
       return '#6B7280';
     case 'restored':

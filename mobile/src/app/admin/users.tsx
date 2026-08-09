@@ -26,7 +26,7 @@ function UserAvatar({ name, size = 42 }: { name: string; size?: number }) {
     .join('')
     .toUpperCase()
     .slice(0, 2);
-  const palette = ['#3B82F6', '#8B5CF6', '#10B981', '#F59E0B', '#EF4444', '#EC4899'];
+  const palette = ['#3B82F6', '#8B5CF6', '#10B981', '#26335F', '#EF4444', '#EC4899'];
   const color = palette[name.charCodeAt(0) % palette.length];
   return (
     <View style={[styles.avatar, { width: size, height: size, borderRadius: size / 2, backgroundColor: `${color}28`, borderColor: `${color}55` }]}>
@@ -79,12 +79,11 @@ function AddUserModal({
 }: {
   visible: boolean;
   onClose: () => void;
-  onAdd: (email: string, password: string, displayName: string, role: 'user' | 'admin') => Promise<void>;
+  onAdd: (email: string, password: string, displayName: string) => Promise<void>;
 }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState<'user' | 'admin'>('user');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -96,8 +95,8 @@ function AddUserModal({
     setLoading(true);
     setError('');
     try {
-      await onAdd(email.trim().toLowerCase(), password, name.trim(), role);
-      setName(''); setEmail(''); setPassword(''); setRole('user');
+      await onAdd(email.trim().toLowerCase(), password, name.trim());
+      setName(''); setEmail(''); setPassword('');
       onClose();
     } catch (e: any) {
       setError(e?.message ?? 'Failed to create user.');
@@ -137,20 +136,9 @@ function AddUserModal({
             secureTextEntry
           />
 
-          <View style={styles.roleToggleRow}>
-            <Pressable
-              style={[styles.roleToggleBtn, role === 'user' && styles.roleToggleBtnActive]}
-              onPress={() => setRole('user')}
-            >
-              <Text style={[styles.roleToggleText, role === 'user' && styles.roleToggleTextActive]}>User</Text>
-            </Pressable>
-            <Pressable
-              style={[styles.roleToggleBtn, role === 'admin' && styles.roleToggleBtnActiveRed]}
-              onPress={() => setRole('admin')}
-            >
-              <Text style={[styles.roleToggleText, role === 'admin' && styles.roleToggleTextActiveRed]}>Admin</Text>
-            </Pressable>
-          </View>
+          <Text style={styles.addHint}>
+            New accounts are created as a regular user. Use "Promote to Admin" from the user list afterward if needed.
+          </Text>
 
           {error ? <Text style={styles.addError}>{error}</Text> : null}
 
@@ -158,10 +146,10 @@ function AddUserModal({
             <Pressable style={styles.modalCancelBtn} onPress={onClose}>
               <Text style={styles.modalCancelText}>Cancel</Text>
             </Pressable>
-            <Pressable style={[styles.modalConfirmBtn, { backgroundColor: '#F59E0B' }]} onPress={handleAdd} disabled={loading}>
+            <Pressable style={[styles.modalConfirmBtn, { backgroundColor: '#26335F' }]} onPress={handleAdd} disabled={loading}>
               {loading
-                ? <ActivityIndicator color="#1A1A1A" size="small" />
-                : <Text style={[styles.modalConfirmText, { color: '#1A1A1A' }]}>Create</Text>}
+                ? <ActivityIndicator color="#FFFFFF" size="small" />
+                : <Text style={[styles.modalConfirmText, { color: '#FFFFFF' }]}>Create</Text>}
             </Pressable>
           </View>
         </Pressable>
@@ -215,11 +203,11 @@ function UserItem({
       {expanded ? (
         <View style={styles.expandedActions}>
           <Pressable
-            style={[styles.actionBtn, { backgroundColor: '#F59E0B18', borderColor: '#F59E0B33' }]}
+            style={[styles.actionBtn, { backgroundColor: '#26335F18', borderColor: '#26335F33' }]}
             onPress={() => onAddDevice(user.uid)}
           >
-            <Smartphone size={14} color="#F59E0B" />
-            <Text style={[styles.actionBtnText, { color: '#F59E0B' }]}>Add Device</Text>
+            <Smartphone size={14} color="#26335F" />
+            <Text style={[styles.actionBtnText, { color: '#26335F' }]}>Add Device</Text>
           </Pressable>
           {user.role === 'user' ? (
             <Pressable
@@ -319,7 +307,7 @@ export default function AdminUsersScreen() {
       title: 'Demote to User',
       message: `Remove admin access from ${u?.displayName ?? 'this user'}?`,
       confirmLabel: 'Demote',
-      confirmColor: '#F59E0B',
+      confirmColor: '#26335F',
       onConfirm: async () => {
         setConfirmModal((m) => ({ ...m, visible: false }));
         await updateUserRole(uid, 'user');
@@ -347,10 +335,9 @@ export default function AdminUsersScreen() {
   async function handleAddUser(
     email: string,
     password: string,
-    displayName: string,
-    role: 'user' | 'admin'
+    displayName: string
   ) {
-    const newUser = await createUser(email, password, displayName, role);
+    const newUser = await createUser(email, password, displayName, 'user');
     setUsers((prev) => [newUser, ...prev]);
   }
 
@@ -403,7 +390,7 @@ export default function AdminUsersScreen() {
 
         {/* User List */}
         {loading ? (
-          <ActivityIndicator color="#F59E0B" style={{ marginTop: 40 }} />
+          <ActivityIndicator color="#26335F" style={{ marginTop: 40 }} />
         ) : filtered.length === 0 ? (
           <View style={styles.emptyState}>
             <Text style={styles.emptyText}>No users found</Text>
@@ -440,8 +427,8 @@ export default function AdminUsersScreen() {
           style={({ pressed }) => [styles.fab, pressed && { opacity: 0.8, transform: [{ scale: 0.95 }] }]}
           onPress={() => setAddModalVisible(true)}
         >
-          <LinearGradient colors={['#F59E0B', '#D97706']} style={styles.fabGradient}>
-            <Plus size={24} color="#1A1A1A" strokeWidth={2.5} />
+          <LinearGradient colors={['#26335F', '#1E294C']} style={styles.fabGradient}>
+            <Plus size={24} color="#FFFFFF" strokeWidth={2.5} />
           </LinearGradient>
         </Pressable>
       </View>
@@ -505,8 +492,8 @@ const styles = StyleSheet.create({
     borderColor: '#E5E7EB',
   },
   filterTabActive: {
-    backgroundColor: '#F59E0B18',
-    borderColor: '#F59E0B44',
+    backgroundColor: '#26335F18',
+    borderColor: '#26335F44',
   },
   filterTabText: {
     fontSize: 13,
@@ -514,7 +501,7 @@ const styles = StyleSheet.create({
     color: '#4B5563',
   },
   filterTabTextActive: {
-    color: '#F59E0B',
+    color: '#26335F',
   },
   filterCount: {
     backgroundColor: '#F3F4F6',
@@ -523,7 +510,7 @@ const styles = StyleSheet.create({
     paddingVertical: 1,
   },
   filterCountActive: {
-    backgroundColor: '#F59E0B33',
+    backgroundColor: '#26335F33',
   },
   filterCountText: {
     fontSize: 10,
@@ -531,7 +518,7 @@ const styles = StyleSheet.create({
     color: '#4B5563',
   },
   filterCountTextActive: {
-    color: '#F59E0B',
+    color: '#26335F',
   },
   list: {
     flex: 1,
@@ -621,7 +608,7 @@ const styles = StyleSheet.create({
     bottom: 24,
     right: 20,
     borderRadius: 28,
-    shadowColor: '#F59E0B',
+    shadowColor: '#26335F',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.4,
     shadowRadius: 12,
@@ -721,42 +708,10 @@ const styles = StyleSheet.create({
     fontFamily: 'Inter_600SemiBold',
     color: '#111827',
   },
-  roleToggleRow: {
-    flexDirection: 'row',
-    backgroundColor: '#F3F4F6',
-    borderRadius: 8,
-    padding: 3,
-    gap: 3,
-  },
-  roleToggleBtn: {
-    flex: 1,
-    height: 36,
-    borderRadius: 6,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  roleToggleBtnActive: {
-    backgroundColor: '#10B98122',
-    borderWidth: 1,
-    borderColor: '#10B98144',
-  },
-  roleToggleBtnActiveRed: {
-    backgroundColor: '#DC262622',
-    borderWidth: 1,
-    borderColor: '#DC262644',
-  },
-  roleToggleText: {
-    fontSize: 13,
-    fontFamily: 'Inter_700Bold',
-    color: '#9CA3AF',
-  },
-  roleToggleTextActive: {
-    color: '#10B981',
-    fontFamily: 'Inter_600SemiBold',
-  },
-  roleToggleTextActiveRed: {
-    color: '#DC2626',
-    fontFamily: 'Inter_600SemiBold',
+  addHint: {
+    fontSize: 12,
+    fontFamily: 'Inter_500Medium',
+    color: '#6B7280',
   },
   addError: {
     fontSize: 12,

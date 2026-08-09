@@ -89,7 +89,7 @@ function UserAvatar({ name, size = 36 }: { name: string; size?: number }) {
     .join('')
     .toUpperCase()
     .slice(0, 2);
-  const colors = ['#3B82F6', '#8B5CF6', '#10B981', '#F59E0B', '#EF4444'];
+  const colors = ['#3B82F6', '#8B5CF6', '#10B981', '#26335F', '#EF4444'];
   const color = colors[name.charCodeAt(0) % colors.length];
   return (
     <View style={[styles.avatar, { width: size, height: size, borderRadius: size / 2, backgroundColor: `${color}33`, borderColor: `${color}66` }]}>
@@ -189,7 +189,7 @@ export default function AdminDashboardScreen() {
           {/* Stats Grid */}
           <Text style={styles.sectionTitle}>SYSTEM OVERVIEW</Text>
           {loadingStats ? (
-            <ActivityIndicator color="#F59E0B" style={{ marginVertical: 20 }} />
+            <ActivityIndicator color="#26335F" style={{ marginVertical: 20 }} />
           ) : (
             <View style={styles.statsGrid}>
               <StatCard
@@ -201,8 +201,8 @@ export default function AdminDashboardScreen() {
               <StatCard
                 label="Total Tanks"
                 value={totalTanks}
-                color="#F59E0B"
-                icon={<Database size={18} color="#F59E0B" />}
+                color="#26335F"
+                icon={<Database size={18} color="#26335F" />}
               />
               <StatCard
                 label="Active Alerts"
@@ -231,11 +231,11 @@ export default function AdminDashboardScreen() {
             />
             <View style={styles.divider} />
             <QuickActionRow
-              icon={<Database size={18} color="#F59E0B" />}
+              icon={<Database size={18} color="#26335F" />}
               label="View All Tanks"
               subtitle="Monitor all connected tank sensors"
               onPress={() => router.push('/(tabs)' as any)}
-              accent="#F59E0B"
+              accent="#26335F"
             />
             <View style={styles.divider} />
             <QuickActionRow
@@ -385,7 +385,7 @@ const styles = StyleSheet.create({
   seeAll: {
     fontSize: 12,
     fontFamily: 'Inter_700Bold',
-    color: '#F59E0B',
+    color: '#26335F',
   },
   statsGrid: {
     flexDirection: 'row',

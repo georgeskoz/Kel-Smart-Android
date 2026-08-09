@@ -205,11 +205,11 @@ export default function SignupScreen() {
             style={({ pressed }) => [styles.signUpBtn, pressed && { opacity: 0.85 }]}
           >
             <LinearGradient
-              colors={loading ? ['#FCD34D', '#FCD34D'] : ['#F59E0B', '#D97706']}
+              colors={loading ? ['#8891AC', '#8891AC'] : ['#26335F', '#1E294C']}
               style={styles.signUpBtnGradient}
             >
               {loading
-                ? <ActivityIndicator color="#1A1A1A" />
+                ? <ActivityIndicator color="#FFFFFF" />
                 : <Text style={styles.signUpBtnText}>Sign Up</Text>}
             </LinearGradient>
           </Pressable>
@@ -230,7 +230,7 @@ export default function SignupScreen() {
           style={({ pressed }) => [styles.supportBtn, pressed && { opacity: 0.75 }]}
           onPress={() => Linking.openURL('mailto:support@kel-es.com?subject=KEL Smart Access Request')}
         >
-          <Headphones size={15} color="#F59E0B" />
+          <Headphones size={15} color="#26335F" />
           <Text style={styles.supportText}>Need help? Contact Support</Text>
         </Pressable>
 
@@ -290,7 +290,7 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
   appNameAccent: {
-    color: '#F59E0B',
+    color: '#26335F',
   },
   card: {
     backgroundColor: '#FFFFFF',
@@ -351,7 +351,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     overflow: 'hidden',
     marginTop: 8,
-    shadowColor: '#F59E0B',
+    shadowColor: '#26335F',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.3,
     shadowRadius: 10,
@@ -365,7 +365,7 @@ const styles = StyleSheet.create({
   signUpBtnText: {
     fontSize: 16,
     fontFamily: 'Inter_700Bold',
-    color: '#1A1A1A',
+    color: '#FFFFFF',
     letterSpacing: 0.3,
   },
   backRow: {
@@ -379,7 +379,7 @@ const styles = StyleSheet.create({
     color: '#4B5563',
   },
   backLink: {
-    color: '#F59E0B',
+    color: '#26335F',
     fontFamily: 'Inter_700Bold',
   },
   modalOverlay: {
@@ -411,7 +411,7 @@ const styles = StyleSheet.create({
     lineHeight: 20,
   },
   modalBtn: {
-    backgroundColor: '#F59E0B',
+    backgroundColor: '#26335F',
     borderRadius: 10,
     height: 44,
     alignItems: 'center',
@@ -421,7 +421,7 @@ const styles = StyleSheet.create({
   modalBtnText: {
     fontSize: 15,
     fontFamily: 'Inter_600SemiBold',
-    color: '#1A1A1A',
+    color: '#FFFFFF',
   },
   supportBtn: {
     flexDirection: 'row',
@@ -434,6 +434,6 @@ const styles = StyleSheet.create({
   supportText: {
     fontSize: 13,
     fontFamily: 'Inter_600SemiBold',
-    color: '#F59E0B',
+    color: '#26335F',
   },
 });

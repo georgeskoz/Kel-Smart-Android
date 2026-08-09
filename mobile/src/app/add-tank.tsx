@@ -24,7 +24,7 @@ type TankType = 'Water' | 'Diesel' | 'Oil' | 'Gasoline' | 'Other';
 
 const TANK_TYPES: { label: TankType; color: string; bg: string; border: string }[] = [
   { label: 'Water', color: '#3B82F6', bg: '#3B82F618', border: '#3B82F633' },
-  { label: 'Diesel', color: '#F59E0B', bg: '#F59E0B18', border: '#F59E0B33' },
+  { label: 'Diesel', color: '#26335F', bg: '#26335F18', border: '#26335F33' },
   { label: 'Oil', color: '#8B5CF6', bg: '#8B5CF618', border: '#8B5CF633' },
   { label: 'Gasoline', color: '#EAB308', bg: '#EAB30818', border: '#EAB30833' },
   { label: 'Other', color: '#6B7280', bg: '#6B728018', border: '#6B728033' },
@@ -272,9 +272,9 @@ export default function AddTankScreen() {
               </View>
 
               <View style={styles.thresholdItem}>
-                <View style={[styles.thresholdHeader, { borderBottomColor: '#F59E0B44' }]}>
-                  <View style={[styles.thresholdDot, { backgroundColor: '#F59E0B' }]} />
-                  <Text style={[styles.thresholdLabel, { color: '#F59E0B' }]}>Low</Text>
+                <View style={[styles.thresholdHeader, { borderBottomColor: '#26335F44' }]}>
+                  <View style={[styles.thresholdDot, { backgroundColor: '#26335F' }]} />
+                  <Text style={[styles.thresholdLabel, { color: '#26335F' }]}>Low</Text>
                 </View>
                 <View style={styles.thresholdInputWrap}>
                   <TextInput
@@ -318,12 +318,12 @@ export default function AddTankScreen() {
             disabled={saving}
             style={({ pressed }) => [styles.saveBtn, pressed && { opacity: 0.85 }, saving && { opacity: 0.7 }]}
           >
-            <LinearGradient colors={['#F59E0B', '#D97706']} style={styles.saveBtnGradient}>
+            <LinearGradient colors={['#26335F', '#1E294C']} style={styles.saveBtnGradient}>
               {saving ? (
-                <ActivityIndicator color="#1A1A1A" size="small" />
+                <ActivityIndicator color="#FFFFFF" size="small" />
               ) : (
                 <>
-                  <Save size={18} color="#1A1A1A" strokeWidth={2.5} />
+                  <Save size={18} color="#FFFFFF" strokeWidth={2.5} />
                   <Text style={styles.saveBtnText}>Save Tank</Text>
                 </>
               )}
@@ -506,7 +506,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     overflow: 'hidden',
     marginTop: 8,
-    shadowColor: '#F59E0B',
+    shadowColor: '#26335F',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.3,
     shadowRadius: 12,
@@ -522,7 +522,7 @@ const styles = StyleSheet.create({
   saveBtnText: {
     fontSize: 16,
     fontFamily: 'Inter_700Bold',
-    color: '#1A1A1A',
+    color: '#FFFFFF',
     letterSpacing: 0.3,
   },
   modalOverlay: {

@@ -208,11 +208,11 @@ export default function LoginScreen() {
             style={({ pressed }) => [styles.signInBtn, pressed && { opacity: 0.85 }]}
           >
             <LinearGradient
-              colors={loading ? ['#FCD34D', '#FCD34D'] : ['#F59E0B', '#D97706']}
+              colors={loading ? ['#8891AC', '#8891AC'] : ['#26335F', '#1E294C']}
               style={styles.signInBtnGradient}
             >
               {loading
-                ? <ActivityIndicator color="#1A1A1A" />
+                ? <ActivityIndicator color="#FFFFFF" />
                 : <Text style={styles.signInBtnText}>Sign In</Text>}
             </LinearGradient>
           </Pressable>
@@ -233,7 +233,7 @@ export default function LoginScreen() {
           style={({ pressed }) => [styles.supportBtn, pressed && { opacity: 0.75 }]}
           onPress={() => Linking.openURL('mailto:support@kel-es.com?subject=KEL Smart App Support')}
         >
-          <Headphones size={15} color="#F59E0B" />
+          <Headphones size={15} color="#26335F" />
           <Text style={styles.supportText}>Need help? Contact Support</Text>
         </Pressable>
 
@@ -313,7 +313,7 @@ export default function LoginScreen() {
                     disabled={forgotLoading}
                   >
                     {forgotLoading
-                      ? <ActivityIndicator color="#1A1A1A" size="small" />
+                      ? <ActivityIndicator color="#FFFFFF" size="small" />
                       : <Text style={styles.modalConfirmText}>Send Link</Text>}
                   </Pressable>
                 </View>
@@ -355,7 +355,7 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
   appNameAccent: {
-    color: '#F59E0B',
+    color: '#26335F',
   },
   logoSubtitle: {
     fontSize: 10,
@@ -428,13 +428,13 @@ const styles = StyleSheet.create({
   forgotText: {
     fontSize: 13,
     fontFamily: 'Inter_600SemiBold',
-    color: '#F59E0B',
+    color: '#26335F',
   },
   signInBtn: {
     borderRadius: 12,
     overflow: 'hidden',
     marginTop: 8,
-    shadowColor: '#F59E0B',
+    shadowColor: '#26335F',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.3,
     shadowRadius: 10,
@@ -448,7 +448,7 @@ const styles = StyleSheet.create({
   signInBtnText: {
     fontSize: 16,
     fontFamily: 'Inter_700Bold',
-    color: '#1A1A1A',
+    color: '#FFFFFF',
     letterSpacing: 0.3,
   },
   signupRow: {
@@ -462,7 +462,7 @@ const styles = StyleSheet.create({
     color: '#4B5563',
   },
   signupLink: {
-    color: '#F59E0B',
+    color: '#26335F',
     fontFamily: 'Inter_700Bold',
   },
   modalOverlay: {
@@ -494,7 +494,7 @@ const styles = StyleSheet.create({
     lineHeight: 20,
   },
   modalBtn: {
-    backgroundColor: '#F59E0B',
+    backgroundColor: '#26335F',
     borderRadius: 10,
     height: 44,
     alignItems: 'center',
@@ -504,7 +504,7 @@ const styles = StyleSheet.create({
   modalBtnText: {
     fontSize: 15,
     fontFamily: 'Inter_600SemiBold',
-    color: '#1A1A1A',
+    color: '#FFFFFF',
   },
   forgotInputWrap: {
     flexDirection: 'row',
@@ -541,7 +541,7 @@ const styles = StyleSheet.create({
   modalConfirmBtn: {
     flex: 1,
     height: 44,
-    backgroundColor: '#F59E0B',
+    backgroundColor: '#26335F',
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
@@ -549,7 +549,7 @@ const styles = StyleSheet.create({
   modalConfirmText: {
     fontSize: 14,
     fontFamily: 'Inter_600SemiBold',
-    color: '#1A1A1A',
+    color: '#FFFFFF',
   },
   supportBtn: {
     flexDirection: 'row',
@@ -562,6 +562,6 @@ const styles = StyleSheet.create({
   supportText: {
     fontSize: 13,
     fontFamily: 'Inter_600SemiBold',
-    color: '#F59E0B',
+    color: '#26335F',
   },
 });

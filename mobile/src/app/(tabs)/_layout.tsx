@@ -21,7 +21,7 @@ export default function TabLayout() {
           paddingBottom: 8,
           paddingTop: 8,
         },
-        tabBarActiveTintColor: '#F59E0B',
+        tabBarActiveTintColor: '#26335F',
         tabBarInactiveTintColor: '#9CA3AF',
       }}
     >
@@ -34,7 +34,7 @@ export default function TabLayout() {
           ),
           headerShown: role === 'admin',
           headerStyle: { backgroundColor: '#FFFFFF' },
-          headerTintColor: '#F59E0B',
+          headerTintColor: '#26335F',
           headerTitle: 'All Tanks',
           headerTitleStyle: { color: '#111827', fontFamily: 'IBMPlexMono_700Bold' },
           headerRight: () =>
