@@ -16,7 +16,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { ArrowLeft, Save, Droplets, AlertTriangle, Lock, Archive } from 'lucide-react-native';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import { ref, get, update } from 'firebase/database';
-import { getFirebaseDB } from '@/lib/firebase';
+import { getFirebaseDB, leaveTank } from '@/lib/firebase';
+import { useAuthStore } from '@/lib/state/authStore';
 import { Copyright } from '@/components/Copyright';
 
 type TankType = 'Water' | 'Diesel' | 'Oil' | 'Gasoline' | 'Other';
@@ -108,6 +109,7 @@ function DeleteConfirmModal({
 export default function EditTankScreen() {
   const router = useRouter();
   const { id } = useLocalSearchParams<{ id: string }>();
+  const user = useAuthStore((s) => s.user);
 
   const [loading, setLoading] = useState(true);
   const [name, setName] = useState('');
@@ -213,8 +215,12 @@ export default function EditTankScreen() {
       showModal('Not Connected', 'Firebase is not configured.', true);
       return;
     }
+    if (!user?.uid || !id) {
+      showModal('Not Signed In', 'Please sign in again and retry.', true);
+      return;
+    }
     try {
-      await update(ref(db, 'sensors/' + id), { hidden: true, userId: null });
+      await leaveTank(id, user.uid);
       router.back();
     } catch (e: any) {
       showModal('Archive Failed', e?.message ?? 'Failed to archive tank. Please try again.', true);

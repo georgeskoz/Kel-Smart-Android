@@ -15,7 +15,11 @@ export interface Tank {
   lastUpdated: Date;
   signalStrength: number;
   online: boolean;
-  userId?: string;
+  members?: Record<string, true>;
+}
+
+export function isTankMember(tank: Pick<Tank, 'members'>, uid: string): boolean {
+  return !!tank.members?.[uid];
 }
 
 export interface TankAlert {

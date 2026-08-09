@@ -14,7 +14,7 @@ import {
   Auth,
 } from 'firebase/auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Tank, TankAlert, TankType } from './tankData';
+import { Tank, TankAlert, TankType, isTankMember } from './tankData';
 import { UserProfile } from './state/authStore';
 
 // Firebase config from EXPO_PUBLIC_* env vars
@@ -412,8 +412,8 @@ export function subscribeUserTanks(
       if (isAdmin) {
         onData(all);
       } else {
-        // Only show tanks explicitly linked to this user
-        const filtered = all.filter((t) => t.userId === userId);
+        // Only show tanks this user is a member of
+        const filtered = all.filter((t) => isTankMember(t, userId));
         onData(filtered);
       }
     },
@@ -429,42 +429,53 @@ export function subscribeUserTanks(
   };
 }
 
-export function subscribeUserAlerts(
-  userId: string,
-  isAdmin: boolean,
-  onData: (alerts: TankAlert[]) => void
-): () => void {
+export async function addOrJoinTank(
+  sensorId: string,
+  fields: {
+    name: string;
+    type: TankType;
+    capacity: number;
+    lowAlert: number;
+    highAlert: number;
+    criticalAlert: number;
+  },
+  uid: string
+): Promise<'created' | 'joined'> {
   const database = getFirebaseDB();
-  if (!database) return () => {};
+  if (!database) throw new Error('Firebase not configured');
 
-  const alertsRef = ref(database, 'alerts');
+  const sensorRef = ref(database, `sensors/${sensorId}`);
+  const snap = await get(sensorRef);
 
-  const unsub = onValue(alertsRef, (snap) => {
-    const val = snap.val();
-    if (!val) {
-      onData([]);
-      return;
-    }
-    const all = Object.entries(val)
-      .map(([id, raw]) => parseAlert(id, raw))
-      .filter((a) => !['restored'].includes(a.type))
-      .sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime())
-      .slice(0, 20);
+  if (snap.exists()) {
+    // Tank already exists — join as an equal member without touching its config,
+    // since the joining household member's own form values may not match what's
+    // already configured (name, capacity, alert thresholds, etc.).
+    await update(ref(database, `sensors/${sensorId}/members`), { [uid]: true });
+    return 'joined';
+  }
 
-    if (isAdmin) {
-      onData(all);
-    } else {
-      // Only show alerts for this user's tanks
-      const filtered = all.filter(
-        (a: any) => a.userId === userId
-      );
-      onData(filtered);
-    }
+  await set(sensorRef, {
+    ...fields,
+    members: { [uid]: true },
   });
+  return 'created';
+}
 
-  return () => {
-    off(alertsRef);
-  };
+export async function leaveTank(sensorId: string, uid: string): Promise<void> {
+  const database = getFirebaseDB();
+  if (!database) throw new Error('Firebase not configured');
+
+  const membersSnap = await get(ref(database, `sensors/${sensorId}/members`));
+  const members = membersSnap.val() || {};
+  const remaining = Object.keys(members).filter((m) => m !== uid);
+
+  if (remaining.length === 0) {
+    // Last member leaving — archive it the same way single-owner deletion worked before
+    await update(ref(database, `sensors/${sensorId}`), { hidden: true, members: null });
+  } else {
+    await remove(ref(database, `sensors/${sensorId}/members/${uid}`));
+  }
 }
 
 // ─── Original subscriptions (kept for backwards compat) ──────────────────────
@@ -490,7 +501,7 @@ function parseSensor(id: string, raw: any): Tank {
     lastUpdated: ts,
     signalStrength: signal,
     online: isOnline,
-    userId: raw.userId || undefined,
+    members: raw.members || undefined,
   };
 }
 

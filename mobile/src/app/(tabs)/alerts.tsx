@@ -14,8 +14,9 @@ import {
   TrendingUp,
   CheckCircle,
 } from 'lucide-react-native';
-import { MOCK_ALERTS, TankAlert } from '@/lib/tankData';
-import { isFirebaseConfigured, subscribeAlerts } from '@/lib/firebase';
+import { MOCK_ALERTS, MOCK_TANKS, TankAlert } from '@/lib/tankData';
+import { isFirebaseConfigured, subscribeAlerts, subscribeUserTanks } from '@/lib/firebase';
+import { useAuthStore } from '@/lib/state/authStore';
 import { Copyright } from '@/components/Copyright';
 
 function alertIcon(type: TankAlert['type']) {
@@ -99,18 +100,31 @@ function AlertRow({ alert }: { alert: TankAlert }) {
 }
 
 export default function AlertsScreen() {
+  const user = useAuthStore((s) => s.user);
+  const isAdmin = user?.role === 'admin';
   const [alerts, setAlerts] = useState<TankAlert[]>(MOCK_ALERTS);
+  const [visibleTankIds, setVisibleTankIds] = useState<Set<string>>(
+    new Set(MOCK_TANKS.map((t) => t.id))
+  );
 
   useEffect(() => {
-    if (!isFirebaseConfigured()) return;
-    const unsub = subscribeAlerts((liveAlerts) => {
-      if (liveAlerts.length >= 0) setAlerts(liveAlerts);
-    });
-    return unsub;
-  }, []);
+    if (!isFirebaseConfigured() || !user) return;
+    const unsubAlerts = subscribeAlerts((liveAlerts) => setAlerts(liveAlerts));
+    const unsubTanks = subscribeUserTanks(
+      user.uid,
+      isAdmin,
+      (liveTanks) => setVisibleTankIds(new Set(liveTanks.map((t) => t.id))),
+      () => {}
+    );
+    return () => {
+      unsubAlerts();
+      unsubTanks();
+    };
+  }, [user?.uid, isAdmin]);
 
-  const active = alerts.filter((a) => a.type !== 'restored');
-  const resolved = alerts.filter((a) => a.type === 'restored');
+  const visibleAlerts = alerts.filter((a) => visibleTankIds.has(a.tankId));
+  const active = visibleAlerts.filter((a) => a.type !== 'restored');
+  const resolved = visibleAlerts.filter((a) => a.type === 'restored');
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['top']}>

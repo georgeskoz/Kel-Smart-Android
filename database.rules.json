@@ -1,0 +1,44 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+
+    "users": {
+      "$uid": {
+        ".read": "auth != null && (auth.uid === $uid || root.child('users').child(auth.uid).child('role').val() === 'admin')",
+        ".write": "auth != null && (auth.uid === $uid || root.child('users').child(auth.uid).child('role').val() === 'admin')",
+        "role": {
+          ".validate": "auth.uid === $uid ? newData.val() === 'user' : (newData.val() === 'user' || newData.val() === 'admin')"
+        }
+      }
+    },
+
+    "sensors": {
+      "$sensorId": {
+        ".read": "auth != null && (root.child('users').child(auth.uid).child('role').val() === 'admin' || data.child('members').child(auth.uid).exists())",
+        ".write": "auth != null && (root.child('users').child(auth.uid).child('role').val() === 'admin' || (data.exists() && data.child('members').child(auth.uid).exists()) || (!data.exists() && newData.child('members').child(auth.uid).exists()))",
+
+        "members": {
+          "$memberUid": {
+            ".write": "auth != null && auth.uid === $memberUid && data.parent().parent().exists()",
+            ".validate": "newData.isBoolean()"
+          }
+        }
+      }
+    },
+
+    "alerts": {
+      "$alertId": {
+        ".read": "auth != null",
+        ".write": "auth != null && root.child('users').child(auth.uid).child('role').val() === 'admin'"
+      }
+    },
+
+    "history": {
+      "$tankId": {
+        ".read": "auth != null",
+        ".write": "auth != null && root.child('users').child(auth.uid).child('role').val() === 'admin'"
+      }
+    }
+  }
+}

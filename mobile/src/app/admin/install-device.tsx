@@ -22,7 +22,7 @@ import {
   User,
 } from 'lucide-react-native';
 import { useRouter, useLocalSearchParams } from 'expo-router';
-import { ref, set } from 'firebase/database';
+import { ref, set, get } from 'firebase/database';
 import { getFirebaseDB, getUserProfile } from '@/lib/firebase';
 import { Copyright } from '@/components/Copyright';
 
@@ -146,6 +146,16 @@ export default function InstallDeviceScreen() {
     setSaving(true);
     try {
       const sensorRef = ref(db, `sensors/${sensorId.trim()}`);
+      const existing = await get(sensorRef);
+      if (existing.exists()) {
+        showModal(
+          'Sensor ID In Use',
+          `A tank is already registered with sensor ID "${sensorId.trim()}". Double-check the ID, or use that tank's own Add Tank flow to link this user as a member instead of provisioning here.`,
+          true
+        );
+        setSaving(false);
+        return;
+      }
       await set(sensorRef, {
         name: name.trim(),
         type,
@@ -156,7 +166,7 @@ export default function InstallDeviceScreen() {
         lowAlert: lowNum,
         highAlert: highNum,
         criticalAlert: critNum,
-        userId,
+        members: { [userId]: true },
         timestamp: Date.now(),
       });
       showModal(

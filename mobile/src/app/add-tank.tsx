@@ -15,8 +15,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
 import { ArrowLeft, Save, Smartphone, Droplets, AlertTriangle } from 'lucide-react-native';
 import { useRouter } from 'expo-router';
-import { ref, update } from 'firebase/database';
-import { getFirebaseDB, getFirebaseAuth } from '@/lib/firebase';
+import { getFirebaseDB, addOrJoinTank } from '@/lib/firebase';
 import { useAuthStore } from '@/lib/state/authStore';
 import { Copyright } from '@/components/Copyright';
 
@@ -110,20 +109,30 @@ export default function AddTankScreen() {
       showModal('Not Connected', 'Firebase is not configured. Please add your Firebase environment variables.', true);
       return;
     }
+    if (!user?.uid) {
+      showModal('Not Signed In', 'Please sign in again and retry.', true);
+      return;
+    }
 
     setSaving(true);
     try {
-      const sensorRef = ref(db, `sensors/${sensorId.trim()}`);
-      await update(sensorRef, {
-        name: name.trim(),
-        type,
-        capacity: capacityNum,
-        lowAlert: lowNum,
-        highAlert: highNum,
-        criticalAlert: critNum,
-        userId: user?.uid ?? '',
-      });
-      showModal('Tank Added', `"${name.trim()}" has been added successfully. It will appear online once the sensor connects.`, false);
+      const result = await addOrJoinTank(
+        sensorId.trim(),
+        {
+          name: name.trim(),
+          type,
+          capacity: capacityNum,
+          lowAlert: lowNum,
+          highAlert: highNum,
+          criticalAlert: critNum,
+        },
+        user.uid
+      );
+      if (result === 'joined') {
+        showModal('Tank Linked', `This sensor is already registered. You've been added as a member of "${sensorId.trim()}" and can now see and manage it.`, false);
+      } else {
+        showModal('Tank Added', `"${name.trim()}" has been added successfully. It will appear online once the sensor connects.`, false);
+      }
     } catch (e: any) {
       showModal('Save Failed', e?.message ?? 'Failed to save tank. Please try again.', true);
     } finally {
