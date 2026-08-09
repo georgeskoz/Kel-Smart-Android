@@ -89,11 +89,13 @@ export default function SignupScreen() {
       >
         {/* Logo */}
         <View style={styles.logoSection}>
-          <Image
-            source={require('../../assets/logo.png')}
-            style={styles.logoImage}
-            resizeMode="contain"
-          />
+          <View style={styles.logoCard}>
+            <Image
+              source={require('../../assets/logo.png')}
+              style={styles.logoImage}
+              resizeMode="contain"
+            />
+          </View>
           <Text style={styles.appName}><Text style={styles.appNameAccent}>KEL</Text> Smart</Text>
         </View>
 
@@ -277,10 +279,24 @@ const styles = StyleSheet.create({
     marginBottom: 32,
     marginTop: 20,
   },
+  logoCard: {
+    backgroundColor: '#26335F',
+    borderRadius: 20,
+    paddingHorizontal: 32,
+    paddingVertical: 26,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 16,
+    shadowColor: '#26335F',
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.25,
+    shadowRadius: 16,
+    elevation: 8,
+  },
   logoImage: {
-    width: 200,
-    height: 100,
-    marginBottom: 8,
+    width: 164,
+    height: 82,
+    tintColor: '#FFFFFF',
   },
   appName: {
     fontSize: 24,

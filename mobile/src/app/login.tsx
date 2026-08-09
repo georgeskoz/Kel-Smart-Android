@@ -128,11 +128,13 @@ export default function LoginScreen() {
       >
         {/* Logo */}
         <View style={styles.logoSection}>
-          <Image
-            source={require('../../assets/logo.png')}
-            style={styles.logoImage}
-            resizeMode="contain"
-          />
+          <View style={styles.logoCard}>
+            <Image
+              source={require('../../assets/logo.png')}
+              style={styles.logoImage}
+              resizeMode="contain"
+            />
+          </View>
           <Text style={styles.appName}><Text style={styles.appNameAccent}>KEL</Text> Smart</Text>
         </View>
 
@@ -342,10 +344,24 @@ const styles = StyleSheet.create({
     marginBottom: 40,
     marginTop: 20,
   },
+  logoCard: {
+    backgroundColor: '#26335F',
+    borderRadius: 20,
+    paddingHorizontal: 36,
+    paddingVertical: 28,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 16,
+    shadowColor: '#26335F',
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.25,
+    shadowRadius: 16,
+    elevation: 8,
+  },
   logoImage: {
-    width: 220,
-    height: 110,
-    marginBottom: 8,
+    width: 180,
+    height: 90,
+    tintColor: '#FFFFFF',
   },
   appName: {
     fontSize: 28,
