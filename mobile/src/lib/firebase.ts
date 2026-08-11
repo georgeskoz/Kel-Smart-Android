@@ -448,6 +448,7 @@ export async function addOrJoinTank(
   // a member yet can't read the full tank (name/capacity/alerts), but the
   // members map itself is readable by any signed-in user precisely so this
   // existence/capacity check works for someone who hasn't joined yet.
+  const sensorRef = ref(database, `sensors/${sensorId}`);
   const membersRef = ref(database, `sensors/${sensorId}/members`);
   const membersSnap = await get(membersRef);
 
@@ -456,19 +457,29 @@ export async function addOrJoinTank(
     if (members[uid]) {
       return 'joined';
     }
-    if (Object.keys(members).length >= 3) {
+
+    const memberCountSnap = await get(ref(database, `sensors/${sensorId}/memberCount`));
+    const currentCount =
+      typeof memberCountSnap.val() === 'number' ? memberCountSnap.val() : Object.keys(members).length;
+    if (currentCount >= 3) {
       throw new Error('TANK_FULL');
     }
+
     // Tank already exists — join as an equal member without touching its config,
     // since the joining household member's own form values may not match what's
-    // already configured (name, capacity, alert thresholds, etc.).
-    await update(membersRef, { [uid]: true });
+    // already configured (name, capacity, alert thresholds, etc.). members and
+    // memberCount must move together in one atomic write — the rules require it.
+    await update(sensorRef, {
+      [`members/${uid}`]: true,
+      memberCount: currentCount + 1,
+    });
     return 'joined';
   }
 
-  await set(ref(database, `sensors/${sensorId}`), {
+  await set(sensorRef, {
     ...fields,
     members: { [uid]: true },
+    memberCount: 1,
   });
   return 'created';
 }
@@ -483,9 +494,12 @@ export async function leaveTank(sensorId: string, uid: string): Promise<void> {
 
   if (remaining.length === 0) {
     // Last member leaving — archive it the same way single-owner deletion worked before
-    await update(ref(database, `sensors/${sensorId}`), { hidden: true, members: null });
+    await update(ref(database, `sensors/${sensorId}`), { hidden: true, members: null, memberCount: null });
   } else {
-    await remove(ref(database, `sensors/${sensorId}/members/${uid}`));
+    await update(ref(database, `sensors/${sensorId}`), {
+      [`members/${uid}`]: null,
+      memberCount: remaining.length,
+    });
   }
 }
 

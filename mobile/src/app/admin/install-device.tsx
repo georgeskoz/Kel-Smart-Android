@@ -167,6 +167,7 @@ export default function InstallDeviceScreen() {
         highAlert: highNum,
         criticalAlert: critNum,
         members: { [userId]: true },
+        memberCount: 1,
         timestamp: Date.now(),
       });
       showModal(

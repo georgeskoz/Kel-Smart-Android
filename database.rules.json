@@ -16,13 +16,18 @@
     "sensors": {
       "$sensorId": {
         ".read": "auth != null && (root.child('users').child(auth.uid).child('role').val() === 'admin' || data.child('members').child(auth.uid).exists())",
-        ".write": "auth != null && (root.child('users').child(auth.uid).child('role').val() === 'admin' || (data.exists() && data.child('members').child(auth.uid).exists()) || (!data.exists() && newData.child('members').child(auth.uid).exists()))",
+        ".write": "auth != null && (root.child('users').child(auth.uid).child('role').val() === 'admin' || (data.exists() && data.child('members').child(auth.uid).exists()) || (!data.exists() && newData.child('members').child(auth.uid).exists() && newData.child('memberCount').val() === 1))",
+
+        "memberCount": {
+          ".read": "auth != null",
+          ".validate": "newData.isNumber() && newData.val() >= 1 && newData.val() <= 3"
+        },
 
         "members": {
           ".read": "auth != null",
           "$memberUid": {
             ".write": "auth != null && auth.uid === $memberUid && data.parent().parent().exists()",
-            ".validate": "newData.isBoolean() && (data.exists() || newData.parent().numChildren() <= 3)"
+            ".validate": "newData.isBoolean() && (data.exists() || (data.parent().parent().child('memberCount').val() < 3 && newData.parent().parent().child('memberCount').val() === data.parent().parent().child('memberCount').val() + 1))"
           }
         }
       }
