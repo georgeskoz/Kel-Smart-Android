@@ -444,18 +444,29 @@ export async function addOrJoinTank(
   const database = getFirebaseDB();
   if (!database) throw new Error('Firebase not configured');
 
-  const sensorRef = ref(database, `sensors/${sensorId}`);
-  const snap = await get(sensorRef);
+  // Read only the members map, not the full sensor object — a user who isn't
+  // a member yet can't read the full tank (name/capacity/alerts), but the
+  // members map itself is readable by any signed-in user precisely so this
+  // existence/capacity check works for someone who hasn't joined yet.
+  const membersRef = ref(database, `sensors/${sensorId}/members`);
+  const membersSnap = await get(membersRef);
 
-  if (snap.exists()) {
+  if (membersSnap.exists()) {
+    const members = membersSnap.val() || {};
+    if (members[uid]) {
+      return 'joined';
+    }
+    if (Object.keys(members).length >= 3) {
+      throw new Error('TANK_FULL');
+    }
     // Tank already exists — join as an equal member without touching its config,
     // since the joining household member's own form values may not match what's
     // already configured (name, capacity, alert thresholds, etc.).
-    await update(ref(database, `sensors/${sensorId}/members`), { [uid]: true });
+    await update(membersRef, { [uid]: true });
     return 'joined';
   }
 
-  await set(sensorRef, {
+  await set(ref(database, `sensors/${sensorId}`), {
     ...fields,
     members: { [uid]: true },
   });

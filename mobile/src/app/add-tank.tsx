@@ -134,7 +134,11 @@ export default function AddTankScreen() {
         showModal('Tank Added', `"${name.trim()}" has been added successfully. It will appear online once the sensor connects.`, false);
       }
     } catch (e: any) {
-      showModal('Save Failed', e?.message ?? 'Failed to save tank. Please try again.', true);
+      if (e?.message === 'TANK_FULL') {
+        showModal('Tank Full', 'This tank already has the maximum number of members (3). Ask an existing member to remove someone before joining.', true);
+      } else {
+        showModal('Save Failed', e?.message ?? 'Failed to save tank. Please try again.', true);
+      }
     } finally {
       setSaving(false);
     }
