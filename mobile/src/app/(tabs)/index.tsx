@@ -37,6 +37,7 @@ import Svg, {
 import {
   isFirebaseConfigured,
   subscribeUserTanks,
+  subscribeUserAlerts,
   subscribeSensors,
   subscribeAlerts,
   getFirebaseDB,
@@ -406,7 +407,11 @@ export default function DashboardScreen() {
         },
         (connected) => setFirebaseConnected(connected)
       );
-      unsubAlerts = subscribeAlerts((liveAlerts) => setAlerts(liveAlerts));
+      unsubAlerts = subscribeUserAlerts(
+        user.uid,
+        isAdmin,
+        (liveAlerts) => setAlerts(liveAlerts)
+      );
     } else {
       unsubSensors = subscribeSensors(
         (liveTanks) => {
@@ -425,9 +430,7 @@ export default function DashboardScreen() {
   }, [user?.uid, isAdmin]);
 
   const onlineCount = tanks.filter((t) => t.online).length;
-  const visibleTankIds = new Set(tanks.map((t) => t.id));
-  const visibleAlerts = alerts.filter((a) => visibleTankIds.has(a.tankId));
-  const alertCount = visibleAlerts.filter(
+  const alertCount = alerts.filter(
     (a) => a.type === 'critical' || a.type === 'low' || a.type === 'offline'
   ).length;
 

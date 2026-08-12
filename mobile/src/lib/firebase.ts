@@ -14,7 +14,7 @@ import {
   Auth,
 } from 'firebase/auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Tank, TankAlert, TankType, isTankMember } from './tankData';
+import { Tank, TankAlert, TankType } from './tankData';
 import { UserProfile } from './state/authStore';
 
 // Firebase config from EXPO_PUBLIC_* env vars
@@ -412,8 +412,8 @@ export function subscribeUserTanks(
       if (isAdmin) {
         onData(all);
       } else {
-        // Only show tanks this user is a member of
-        const filtered = all.filter((t) => isTankMember(t, userId));
+        // Only show tanks explicitly linked to this user
+        const filtered = all.filter((t) => t.userId === userId);
         onData(filtered);
       }
     },
@@ -429,78 +429,42 @@ export function subscribeUserTanks(
   };
 }
 
-export async function addOrJoinTank(
-  sensorId: string,
-  fields: {
-    name: string;
-    type: TankType;
-    capacity: number;
-    lowAlert: number;
-    highAlert: number;
-    criticalAlert: number;
-  },
-  uid: string
-): Promise<'created' | 'joined'> {
+export function subscribeUserAlerts(
+  userId: string,
+  isAdmin: boolean,
+  onData: (alerts: TankAlert[]) => void
+): () => void {
   const database = getFirebaseDB();
-  if (!database) throw new Error('Firebase not configured');
+  if (!database) return () => {};
 
-  // Read only the members map, not the full sensor object — a user who isn't
-  // a member yet can't read the full tank (name/capacity/alerts), but the
-  // members map itself is readable by any signed-in user precisely so this
-  // existence/capacity check works for someone who hasn't joined yet.
-  const sensorRef = ref(database, `sensors/${sensorId}`);
-  const membersRef = ref(database, `sensors/${sensorId}/members`);
-  const membersSnap = await get(membersRef);
+  const alertsRef = ref(database, 'alerts');
 
-  if (membersSnap.exists()) {
-    const members = membersSnap.val() || {};
-    if (members[uid]) {
-      return 'joined';
+  const unsub = onValue(alertsRef, (snap) => {
+    const val = snap.val();
+    if (!val) {
+      onData([]);
+      return;
     }
+    const all = Object.entries(val)
+      .map(([id, raw]) => parseAlert(id, raw))
+      .filter((a) => !['restored'].includes(a.type))
+      .sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime())
+      .slice(0, 20);
 
-    const memberCountSnap = await get(ref(database, `sensors/${sensorId}/memberCount`));
-    const currentCount =
-      typeof memberCountSnap.val() === 'number' ? memberCountSnap.val() : Object.keys(members).length;
-    if (currentCount >= 3) {
-      throw new Error('TANK_FULL');
+    if (isAdmin) {
+      onData(all);
+    } else {
+      // Only show alerts for this user's tanks
+      const filtered = all.filter(
+        (a: any) => a.userId === userId
+      );
+      onData(filtered);
     }
-
-    // Tank already exists — join as an equal member without touching its config,
-    // since the joining household member's own form values may not match what's
-    // already configured (name, capacity, alert thresholds, etc.). members and
-    // memberCount must move together in one atomic write — the rules require it.
-    await update(sensorRef, {
-      [`members/${uid}`]: true,
-      memberCount: currentCount + 1,
-    });
-    return 'joined';
-  }
-
-  await set(sensorRef, {
-    ...fields,
-    members: { [uid]: true },
-    memberCount: 1,
   });
-  return 'created';
-}
 
-export async function leaveTank(sensorId: string, uid: string): Promise<void> {
-  const database = getFirebaseDB();
-  if (!database) throw new Error('Firebase not configured');
-
-  const membersSnap = await get(ref(database, `sensors/${sensorId}/members`));
-  const members = membersSnap.val() || {};
-  const remaining = Object.keys(members).filter((m) => m !== uid);
-
-  if (remaining.length === 0) {
-    // Last member leaving — archive it the same way single-owner deletion worked before
-    await update(ref(database, `sensors/${sensorId}`), { hidden: true, members: null, memberCount: null });
-  } else {
-    await update(ref(database, `sensors/${sensorId}`), {
-      [`members/${uid}`]: null,
-      memberCount: remaining.length,
-    });
-  }
+  return () => {
+    off(alertsRef);
+  };
 }
 
 // ─── Original subscriptions (kept for backwards compat) ──────────────────────
@@ -526,7 +490,7 @@ function parseSensor(id: string, raw: any): Tank {
     lastUpdated: ts,
     signalStrength: signal,
     online: isOnline,
-    members: raw.members || undefined,
+    userId: raw.userId || undefined,
   };
 }
 

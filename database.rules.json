@@ -15,34 +15,21 @@
 
     "sensors": {
       "$sensorId": {
-        ".read": "auth != null && (root.child('users').child(auth.uid).child('role').val() === 'admin' || data.child('members').child(auth.uid).exists())",
-        ".write": "auth != null && (root.child('users').child(auth.uid).child('role').val() === 'admin' || (data.exists() && data.child('members').child(auth.uid).exists()) || (!data.exists() && newData.child('members').child(auth.uid).exists() && newData.child('memberCount').val() === 1))",
-
-        "memberCount": {
-          ".read": "auth != null",
-          ".validate": "newData.isNumber() && newData.val() >= 1 && newData.val() <= 3"
-        },
-
-        "members": {
-          ".read": "auth != null",
-          "$memberUid": {
-            ".write": "auth != null && auth.uid === $memberUid && data.parent().parent().exists()",
-            ".validate": "newData.isBoolean() && (data.exists() || (data.parent().parent().child('memberCount').val() < 3 && newData.parent().parent().child('memberCount').val() === data.parent().parent().child('memberCount').val() + 1))"
-          }
-        }
+        ".read": "auth != null && (root.child('users').child(auth.uid).child('role').val() === 'admin' || data.child('userId').val() === auth.uid)",
+        ".write": "auth != null && (root.child('users').child(auth.uid).child('role').val() === 'admin' || (data.exists() && data.child('userId').val() === auth.uid) || (!data.exists() && newData.child('userId').val() === auth.uid))"
       }
     },
 
     "alerts": {
       "$alertId": {
-        ".read": "auth != null && (root.child('users').child(auth.uid).child('role').val() === 'admin' || (data.child('tankId').isString() && root.child('sensors').child(data.child('tankId').val()).child('members').child(auth.uid).exists()))",
+        ".read": "auth != null && (root.child('users').child(auth.uid).child('role').val() === 'admin' || data.child('userId').val() === auth.uid)",
         ".write": "auth != null && root.child('users').child(auth.uid).child('role').val() === 'admin'"
       }
     },
 
     "history": {
       "$tankId": {
-        ".read": "auth != null && (root.child('users').child(auth.uid).child('role').val() === 'admin' || root.child('sensors').child($tankId).child('members').child(auth.uid).exists())",
+        ".read": "auth != null && (root.child('users').child(auth.uid).child('role').val() === 'admin' || root.child('sensors').child($tankId).child('userId').val() === auth.uid)",
         ".write": "auth != null && root.child('users').child(auth.uid).child('role').val() === 'admin'"
       }
     }
