@@ -35,7 +35,7 @@
 
     "alerts": {
       "$alertId": {
-        ".read": "auth != null && (root.child('users').child(auth.uid).child('role').val() === 'admin' || root.child('sensors').child(data.child('tankId').val()).child('members').child(auth.uid).exists())",
+        ".read": "auth != null && (root.child('users').child(auth.uid).child('role').val() === 'admin' || (data.child('tankId').isString() && root.child('sensors').child(data.child('tankId').val()).child('members').child(auth.uid).exists()))",
         ".write": "auth != null && root.child('users').child(auth.uid).child('role').val() === 'admin'"
       }
     },
