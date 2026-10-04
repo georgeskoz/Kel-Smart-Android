@@ -71,7 +71,6 @@
         "expo-manifests": "~1.0.11",
         "expo-mesh-gradient": "~0.4.8",
         "expo-network": "~8.0.8",
-        "expo-network-addons": "~0.7.2",
         "expo-print": "~15.0.8",
         "expo-router": "~6.0.24",
         "expo-screen-capture": "~8.0.10",
@@ -1515,8 +1514,6 @@
     "expo-modules-core": ["expo-modules-core@3.0.30", "", { "dependencies": { "invariant": "^2.2.4" }, "peerDependencies": { "react": "*", "react-native": "*" } }, "sha512-a6IrpAn/Jbmwxi9L+hMmXKpNqnkUpoF7WHOpn02rVLyax2J0gB1vvCVE5rNydplEnt41Q6WxQwvcOjZaIkcSUg=="],
 
     "expo-network": ["expo-network@8.0.8", "", { "peerDependencies": { "expo": "*", "react": "*" } }, "sha512-dgrL8UHAmWofqeY4UEjWskCl/RoQAM0DG6PZR8xz2WZt+6aQEboQgFRXowCfhbKZ71d16sNuKXtwBEsp2DtdNw=="],
-
-    "expo-network-addons": ["expo-network-addons@0.7.2", "", { "peerDependencies": { "expo": "*" } }, "sha512-gFJsTifI2BwrgJTK8DIwwTD6IReroZ/VcwXrJBqGByJyq/MT8HXAITsUnAZGvkZSrUho3x9xiWmeGBwdtaAlNA=="],
 
     "expo-print": ["expo-print@15.0.8", "", { "peerDependencies": { "expo": "*", "react-native": "*" } }, "sha512-4O0Qzm0On5AmJIl9d+BT+ieTipFp658nHI4aX7vKEFPfj3dfQxG6rDJJpca+rrc9c4Ha8ZFYGvxJG5+4lFq2Pw=="],
 
