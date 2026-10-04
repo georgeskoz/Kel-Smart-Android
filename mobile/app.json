@@ -15,8 +15,8 @@
       "infoPlist": {}
     },
     "android": {
-      "package": "com.kelsmart.iq",
-      "versionCode": 10,
+      "package": "com.kelsmart.iq2",
+      "versionCode": 11,
       "edgeToEdgeEnabled": true
     },
     "plugins": [
