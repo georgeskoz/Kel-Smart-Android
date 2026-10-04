@@ -17,11 +17,8 @@
     "production": {
       "autoIncrement": true,
       "env": {
-        "BACKEND_URL": "https://magic-tallow.vibecode.run",
         "EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN": "sensor-a2d-data.firebaseapp.com",
         "EXPO_PUBLIC_FIREBASE_API_KEY": "AIzaSyA9XvHsi-lVtJIe4_HBpNsSimRy-lEN6Oo",
-        "EXPO_PUBLIC_VIBECODE_BACKEND_URL": "https://magic-tallow.vibecode.run",
-        "EXPO_PUBLIC_BACKEND_URL": "https://magic-tallow.vibecode.run",
         "EXPO_PUBLIC_FIREBASE_PROJECT_ID": "sensor-a2d-data",
         "EXPO_PUBLIC_FIREBASE_STORAGE_BUCKET": "sensor-a2d-data.firebasestorage.app",
         "EXPO_PUBLIC_FIREBASE_DATABASE_URL": "https://sensor-a2d-data-default-rtdb.firebaseio.com",
